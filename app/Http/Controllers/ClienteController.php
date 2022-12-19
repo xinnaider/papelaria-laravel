@@ -17,7 +17,7 @@ class ClienteController extends Controller
     
     public function index()
     {
-        $clientes = cliente::get();
+        $clientes = cliente::all();
 
         return view('cliente.index', compact('clientes'));
     }
@@ -29,9 +29,7 @@ class ClienteController extends Controller
 
     public function show($id)
     {
-        if (!$cliente = cliente::find($id)){
-            return redirect()->route('cliente.index');
-        }
+        $cliente = $this->validarCliente($id);
         return view('cliente.show', compact('cliente'));
     }
 
@@ -43,16 +41,12 @@ class ClienteController extends Controller
     }
 
     public function edit($id){
-        if (!$cliente = cliente::find($id)){
-            return redirect()->route('cliente.index');
-        }
+        $cliente = $this->validarCliente($id);
         return view('cliente.edit', compact('cliente'));
     }
 
     public function update(Request $request, $id){
-        if (!$cliente = cliente::find($id)){
-            return redirect()->route('cliente.index');
-        }
+        $cliente = $this->validarCliente($id);
         $cliente->update($request->all());
 
         return redirect()->route('cliente.index');
@@ -60,12 +54,18 @@ class ClienteController extends Controller
 
     public function delete($id)
     {
-        if (!$cliente = cliente::find($id)){
-            return redirect()->route('cliente.index');
-        }
+        $cliente = $this->validarCliente($id);
 
         $cliente->delete();
 
         return redirect()->route('cliente.index');
+    }
+
+    public function validarCliente($id){
+        if (!$cliente = cliente::find($id)){
+            return redirect()->route('cliente.index');
+        }
+
+        return $cliente;
     }
 }

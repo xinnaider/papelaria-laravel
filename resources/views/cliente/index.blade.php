@@ -24,7 +24,7 @@
                             <td> {{ $item->email }} </td>
                             <td> {{ $item->cpf }} </td>
                             <td> {{ $item->sexo }} </td>
-                            <td> {{  date("m-d-Y", strtotime($item->dataNascimento)) }} </td>
+                            <td> {{  date("d/m/Y", strtotime($item->dataNascimento)) }} </td>
                             <td> 
                                 <div style="display: flex; justify-content: space-evenly;">
                                 <a class="btn btn-primary" href="{{ route('cliente.edit', $item->id) }}" role="button">Atualizar</a>

@@ -23,14 +23,14 @@ class StoreUpdateClienteFormRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->id ?? '';
+        // $id = $this->id ?? '';
 
         return [
             'nome' => 'required|string|max:255|min:3',
             'email' => [
                 'required',
                 'email',
-                "unique: clientes,email,{$id},id",
+                "unique:clientes,email",
             ],
             'telefone' => [
                 'required',
