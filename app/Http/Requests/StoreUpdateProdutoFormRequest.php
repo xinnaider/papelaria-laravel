@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUpdateClienteFormRequest extends FormRequest
+class StoreUpdateProdutoFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,29 +23,20 @@ class StoreUpdateClienteFormRequest extends FormRequest
      */
     public function rules()
     {
-        // $id = $this->id ?? '';
-
         return [
-            'nome' => 'required|string|max:255|min:3',
-            'email' => [
-                'required',
-                'email',
-                "unique:clientes,email",
-            ],
-            'telefone' => [
+            'nome' => 'required|string|max:255|min:3|unique:produtos',
+            'marca' => [
                 'required',
                 'min:3',
                 'max:15',
                 'string',
             ],
-            'cpf' => [
+            'estoque' => [
                 'required',
-                'min:3',
-                'max:15',
-                'string',
+                'min:1',
+                'integer',
             ],
-            'sexo' => 'required',
-            'dataNascimento' => 'required'
+            'preco' => 'required'
         ];
     }
 }

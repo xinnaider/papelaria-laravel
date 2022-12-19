@@ -4,7 +4,7 @@
     <div class="container d-flex justify-content-center">
         <div class="container mt-3">
             <div style="margin-bottom: 50px; border-radius: 25px; background-color: #ff5757; height: 100px"> 
-                <h1 style="color: white; text-align: center; padding-bottom: 25px; padding-top: 25px;"> Clientes </h1>
+                <h1 style="color: white; text-align: center; padding-bottom: 25px; padding-top: 25px;"> Funcionarios </h1>
             </div>
             <table>
                 <tr>
@@ -16,7 +16,7 @@
                     <th>Data de Nascimento</th>
                     <th>Funções</th>
                 </tr>
-                @foreach ($clientes as $item)
+                @foreach ($funcionarios as $item)
                     <tr>
                         <td> {{ $item->nome }} </td>
                         <td> {{ $item->telefone }} </td>
@@ -26,8 +26,8 @@
                         <td> {{  date("d/m/Y", strtotime($item->dataNascimento)) }} </td>
                         <td> 
                             <div style="display: flex; justify-content: space-evenly;">
-                            <a class="btn btn-primary" href="{{ route('cliente.edit', $item->id) }}" role="button" id="botaonav"> <i class="bi bi-pencil-square"></i>  </a>
-                            <form action="{{route('cliente.delete', $item->id)}}" method="POST">
+                            <a class="btn btn-primary" href="{{ route('funcionario.edit', $item->id) }}" role="button" id="botaonav"> <i class="bi bi-pencil-square"></i>  </a>
+                            <form action="{{route('funcionario.delete', $item->id)}}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <button class="btn btn-primary" type="submit" id="botaonav"> <i class="bi bi-trash"></i> </button>
@@ -37,7 +37,7 @@
                     </tr>
                 @endforeach
             </table>
-            <a class="btn btn-primary" id="botaonav" href="{{ route('cliente.create') }}" style="margin-top: 20px;" role="button">Adicionar cliente</a>
+            <a class="btn btn-primary" id="botaonav" href="{{ route('funcionario.create') }}" style="margin-top: 20px;" role="button">Adicionar funcionario</a>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>

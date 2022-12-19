@@ -6,9 +6,9 @@
     <div class="container mt-3">
 
     <div style="margin-bottom: 50px; border-radius: 25px; background-color: #ff5757; height: 100px"> 
-            <h1 style="color: white; text-align: center; padding-bottom: 25px; padding-top: 25px;"> Editar cliente </h1>
+            <h1 style="color: white; text-align: center; padding-bottom: 25px; padding-top: 25px;"> Editar funcionario </h1>
     </div>
-    <form action="{{ route ('cliente.update', $cliente->id) }}" method="post" style="background-color: #e9f2f9; border: 3px solid #ff5757; border-radius: 25px; padding: 25px;">
+    <form action="{{ route ('funcionario.update', $funcionario->id) }}" method="post" style="background-color: #e9f2f9; border: 3px solid #ff5757; border-radius: 25px; padding: 25px;">
         @csrf
         @if ($errors->any())
         <div class="alert alert-danger" role="alert">
@@ -21,13 +21,13 @@
             <div class="col">
                 <div class="mb-3">
                     <label for="Nome" class="form-label">Nome</label>
-                    <input value="{{ $cliente->nome }}" name="nome" type="text" class="form-control" id="nome" required>
+                    <input value="{{ $funcionario->nome }}" name="nome" type="text" class="form-control" id="nome" required>
                 </div>
             </div>
             <div class="col">
                 <div class="mb-3">
                     <label for="Telefone" class="form-label">Telefone</label>
-                    <input value="{{ $cliente->telefone }}" 
+                    <input value="{{ $funcionario->telefone }}" 
                         name="telefone" 
                         type="tel"
                         onkeypress="$(this).mask('(00) 0000-0000')"
@@ -41,13 +41,13 @@
             <div class="col">
                 <div class="mb-3">
                     <label for="Email" class="form-label">Email</label>
-                    <input value="{{ $cliente->email }}" name="email" type="email" class="form-control" id="email" required>
+                    <input value="{{ $funcionario->email }}" name="email" type="email" class="form-control" id="email" required>
                 </div>
             </div>
             <div class="col">
                 <div class="mb-3">
                     <label for="CPF" class="form-label">CPF</label>
-                    <input value="{{ $cliente->cpf }}" name="cpf" onkeypress="$(this).mask('000.000.000-00', {reverse: true});" type="text" class="form-control" id="cpf" required>
+                    <input value="{{ $funcionario->cpf }}" name="cpf" onkeypress="$(this).mask('000.000.000-00', {reverse: true});" type="text" class="form-control" id="cpf" required>
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@
                 <div class="mb-3">
                     <label for="Sexo" class="form-label">Sexo</label>
                     <select class="form-select" name="sexo" class="form-control" id="sexo" required>
-                        @if($cliente->sexo) <option value="{{ $cliente->sexo }}" selected> {{ $cliente->sexo }} </option> @endif
+                        @if($funcionario->sexo) <option value="{{ $funcionario->sexo }}" selected> {{ $funcionario->sexo }} </option> @endif
                         <option value="Não dizer">Prefiro não dizer</option>
                         <option value="Masculino">Masculino</option>
                         <option value="Feminino">Feminino</option>
@@ -66,12 +66,12 @@
             <div class="col">
                 <div class="mb-3">
                     <label for="Datanascimento" class="form-label">Data nascimento</label>
-                    <input value="{{ date('d/m/Y', strtotime($cliente->dataNascimento)) }}" name="dataNascimento" onkeypress="$(this).mask('00/00/0000', {placeholder: '__/__/____'});" type="text" class="form-control" id="dataNasc" required>
+                    <input value="{{ date('d/m/Y', strtotime($funcionario->dataNascimento)) }}" name="dataNascimento" onkeypress="$(this).mask('00/00/0000', {placeholder: '__/__/____'});" type="text" class="form-control" id="dataNasc" required>
                 </div>
             </div>
         </div>
         <div class="modal-footer">
-            <a class="btn btn-primary" id="botaonav" style="margin-right: 25px;" href="{{ route('cliente.index') }}"> Voltar </a>
+            <a class="btn btn-primary" id="botaonav" style="margin-right: 25px;" href="{{ route('funcionario.index') }}"> Voltar </a>
             <button type="submit" class="btn btn-primary" id="botaonav">Salvar</button>
         </div>
     </form>

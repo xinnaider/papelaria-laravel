@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUpdateClienteFormRequest;
+use App\Http\Requests\StoreUpdateFuncionarioClienteFormRequest;
 use App\Models\cliente;
 use Illuminate\Http\Request;
 
@@ -33,7 +33,7 @@ class ClienteController extends Controller
         return view('cliente.show', compact('cliente'));
     }
 
-     public function store(StoreUpdateClienteFormRequest $request)
+     public function store(StoreUpdateFuncionarioClienteFormRequest $request)
     {
         cliente::create($request->all());
 

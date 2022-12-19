@@ -13,9 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('clientes', function (Blueprint $table) {
-            $table->timestamp('updated_at');
-            $table->timestamp('created_at');
+        Schema::create('produtos', function (Blueprint $table) {
+            $table->id();
+            $table->string('nome');
+            $table->string('marca');
+            $table->integer('estoque');
+            $table->float('preco');
         });
     }
 
@@ -26,9 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('clientes', function (Blueprint $table) {
-            $table->dropColumn('updated_at');
-            $table->dropColumn('created_at');
-        });
+        Schema::dropIfExists('produtos');
     }
 };
