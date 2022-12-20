@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nome');
             $table->string('marca');
             $table->integer('estoque');
-            $table->float('preco');
+            $table->string('preco');
         });
     }
 

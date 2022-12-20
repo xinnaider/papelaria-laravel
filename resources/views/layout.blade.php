@@ -18,6 +18,7 @@
             <a class="btn p-2 px-3 m-3 nav-link" id="botaonav" aria-current="page" href="{{ url('/') }}">Inicio</a>
             <a class="btn p-2 px-3 m-3 nav-link" id="botaonav" href="{{ route('cliente.index') }}">Cliente</a>
             <a class="btn p-2 px-3 m-3 nav-link" id="botaonav" href="{{ route('funcionario.index') }}">Funcionario</a>
+            <a class="btn p-2 px-3 m-3 nav-link" id="botaonav" href="{{ route('produto.index') }}">Produto</a>
             </div>
           </a>
         </div>

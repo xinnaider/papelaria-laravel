@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Unbounded&display=swap');
+
 #botaonav {
     background-color: #ff5757; 
     color: white;
@@ -26,4 +28,11 @@ padding-bottom: 12px;
 text-align: center;
 background-color: #ac8282;
 color: white;
+}
+
+#botoesinicial {
+    border-color: transparent;
+    font-size: 35px;
+    color: white;
+    font-family: 'Unbounded', cursive;
 }

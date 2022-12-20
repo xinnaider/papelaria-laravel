@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FuncionarioController;
+use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
 
 $cliente = ClienteController::class;
@@ -23,6 +24,17 @@ Route::get('/funcionario', [$funcionario, 'index'])->name('funcionario.index');
 Route::post('/funcionario/create', [$funcionario, 'store'])->name('funcionario.store');
 Route::get('/funcionario/create', [$funcionario, 'create'])->name('funcionario.create');
 Route::get('/funcionario/{id}', [$funcionario, 'show'])->name('funcionario.show');
+
+$produto = ProdutoController::class;
+
+Route::delete('/produto/{id}/destroy', [$produto, 'delete'])->name('produto.delete');
+Route::post('/produto/{id}/update', [$produto, 'update'])->name('produto.update');
+Route::get('/produto/{id}/edit', [$produto, 'edit'])->name('produto.edit');
+Route::get('/produto', [$produto, 'index'])->name('produto.index');
+Route::post('/produto/create', [$produto, 'store'])->name('produto.store');
+Route::get('/produto/create', [$produto, 'create'])->name('produto.create');
+Route::get('/produto/{id}', [$produto, 'show'])->name('produto.show');
+
 
 Route::get('/', function () {
     return view('inicial');
