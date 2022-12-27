@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\FuncionarioController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\VendaController;
 use Illuminate\Support\Facades\Route;
 
 $cliente = ClienteController::class;
@@ -35,7 +36,12 @@ Route::post('/produto/create', [$produto, 'store'])->name('produto.store');
 Route::get('/produto/create', [$produto, 'create'])->name('produto.create');
 Route::get('/produto/{id}', [$produto, 'show'])->name('produto.show');
 
+$venda = VendaController::class;
+
+Route::get('/venda/create', [$venda, 'create'])->name('venda.create');
+Route::post('/venda/create', [$venda, 'store'])->name('venda.store');
+Route::get('/venda', [$venda, 'index'])->name('venda.index');
 
 Route::get('/', function () {
     return view('inicial');
-});
+})->name('inicial.index');

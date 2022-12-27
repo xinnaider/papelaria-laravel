@@ -4,7 +4,7 @@
     <div class="container d-flex justify-content-center">
         <div class="container mt-3">
             <div style="margin-bottom: 50px; border-radius: 25px; background-color: #ff5757; height: 100px"> 
-                <h1 style="color: white; text-align: center; padding-bottom: 25px; padding-top: 25px;"> Clientes </h1>
+                <h1 style="color: white; text-align: center; padding-bottom: 25px; padding-top: 25px;"> Clientes 🧑‍💼</h1>
             </div>
             <table>
                 <tr>

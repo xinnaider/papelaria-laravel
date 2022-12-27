@@ -18,7 +18,7 @@
                 <div class="col">
                 <div class="row g-0" style="width: 750px; height: 200px;">
                     <div class="col">
-                        <button id="botoesinicial" style="background-color:#b1cf72; width: 100%; height: 100%; border-top-left-radius: 50px;"> VENDER </button>
+                        <button id="botoesinicial" style="background-color:#b1cf72; width: 100%; height: 100%; border-top-left-radius: 50px;"  onclick="window.location='{{ route('venda.create') }}'"> VENDER </button>
                     </div>
                     <div class="col">
                         <button id="botoesinicial" style="background-color:#e36b6b; width: 100%; height: 100%; border-top-right-radius: 50px;" onclick="window.location='{{ route('produto.index') }}'"> PRODUTOS </button>

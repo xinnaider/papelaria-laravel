@@ -6,7 +6,7 @@
     <div class="container mt-3">
 
     <div style="margin-bottom: 50px; border-radius: 25px; background-color: #ff5757; height: 100px"> 
-            <h1 style="color: white; text-align: center; padding-bottom: 25px; padding-top: 25px;"> Editar cliente </h1>
+            <h1 style="color: white; text-align: center; padding-bottom: 25px; padding-top: 25px;"> Editar cliente 🧑‍💼</h1>
     </div>
     <form action="{{ route ('cliente.update', $cliente->id) }}" method="post" style="background-color: #e9f2f9; border: 3px solid #ff5757; border-radius: 25px; padding: 25px;">
         @csrf
