@@ -27,14 +27,24 @@ class VendaController extends Controller
     public function index()
     {
         $vendas = venda::all();
+        // dd($vendas, [1, 2, 3]);
 
-        dd($vendas->produto);
+        // $vendas->map(function ($venda) {
+        //     $venda->produtosVenda->map(function($produtoVenda) {
+
+        //         dd($produtoVenda->produto);
+        //     });
+        // });
+        
+        // dd($vendas->get(0)->produtos);
+        // dd($vendas);
 
         return view('venda.index', compact('vendas'));
     }
 
     public function create()
     {
+
         $produto = produto::all();
         $cliente = cliente::all();
         $funcionario = funcionario::all();
@@ -43,6 +53,16 @@ class VendaController extends Controller
 
     public function store(Request $request)
     {
+        // $request->validate([
+        //     'cliente' => 'required|min:2'
+        // ]);
+        // dd($request-);
+        // venda_produto::create([
+        //     'quantidade' => $request->quantidade[$i],
+        //     'venda_id' => $this->venda->id,
+        //     'produto_id' => $produtoSelecionado[0]->id,
+        // ]);
+
         $this->venda = new venda();
         $this->venda->dataHora = new \DateTime();
         $this->venda->funcionario_id = $request->funcionario;
@@ -53,7 +73,7 @@ class VendaController extends Controller
             $produtoSelecionado = DB::table('produtos')->where('nome', '=', $request->produto[$i])->get();
             DB::table('venda_produto')->insert([
                 'quantidade' => $request->quantidade[$i],
-                'venda_id' => $this->venda->id,
+                'venda_id' =>   $this->venda->id,
                 'produto_id' => $produtoSelecionado[0]->id,
                 'updated_at' => new \DateTime(),
                 'created_at' => new \DateTime()
@@ -61,6 +81,6 @@ class VendaController extends Controller
             DB::table('produtos')->where('id', $produtoSelecionado[0]->id)->decrement('estoque',$request->quantidade[$i]);
         };
 
-        return redirect()->route('inicial.index');
+        return redirect()->route('venda.index');
     }
 }

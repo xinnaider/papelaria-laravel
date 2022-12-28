@@ -1,6 +1,10 @@
 @extends('layout')
 
 @section('content')
+
+
+{{-- {{ isset($errors) ? $errors: 'Não tem erro' }} --}}
+
     <div class="container d-flex justify-content-center">
         <div class="container mt-3">
             <div style="margin-bottom: 50px; border-radius: 25px; background-color: #ff5757; height: 100px"> 
@@ -8,13 +12,17 @@
             </div>
             <table>
                 <tr>
-                    <th>teste</th>
-                    <th>teste</th>
+                    <th>Funcionario</th>
+                    <th>Cliente</th>
                 </tr>
-                @foreach ($vendas as $item)
+                @foreach ($vendas as $venda)
                     <tr>
-                        <td> {{ $item->quantidade }} </td>
-                        <td> {{ $item->produto->nome }} </td>
+                        <td>{{ $venda->funcionario->nome }}</td>
+                        <td>{{ $venda->cliente->nome }}</td>
+                    {{-- @foreach ($venda->produtosVenda as $produto)
+                        <td> {{ $produto->quantidade }} </td>
+                        <td> {{ $produto->produtos }} </td>
+                    @endforeach --}}
                     </tr>
                 @endforeach
             </table>

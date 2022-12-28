@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+{{-- {{ $errors ?? 'Não tem erro' }} --}}
 <div class="container d-flex justify-content-center">
     <div class="container mt-3">
 
@@ -17,25 +18,13 @@
         </div>
         @endif
         <div class="row g-3">
-            <div class="col">
-                <div class="mb-3">
-                    <label for="Produto" class="form-label">Produto</label>
-                    <select class="form-select" name="produto" class="form-control" id="produto" required>
-                        @foreach ($produto as $item)
-                        <option value="{{$item->id}}">{{$item->nome}}</option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-            <div class="col">
-                <div class="mb-3">
-                    <label for="Cliente" class="form-label">Cliente</label>
-                    <select class="form-select" name="cliente" class="form-control" id="cliente" required>
-                        @foreach ($cliente as $item)
-                        <option value="{{$item->id}}">{{$item->nome}}</option>
-                        @endforeach
-                    </select>
-                </div>
+            <div class="mb-3">
+                <label for="Cliente" class="form-label">Cliente</label>
+                <select class="form-select" name="cliente" class="form-control" id="cliente" required>
+                    @foreach ($cliente as $item)
+                    <option value="{{$item->id}}">{{$item->nome}}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
         <div class="row g-3">
@@ -76,6 +65,7 @@
 
     <script>
         function addItem(variavel) {
+            // var a = $("#lista2");
             var a = document.getElementById("lista2");
             var candidate = variavel.textContent;
             var li = document.createElement("li");
