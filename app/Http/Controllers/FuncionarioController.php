@@ -17,7 +17,7 @@ class FuncionarioController extends Controller
 
      public function index()
     {
-        $funcionarios = funcionario::all();
+        $funcionarios = funcionario::where('verificacao','=','true')->get();
 
         return view('funcionario.index', compact('funcionarios'));
     }
@@ -36,7 +36,7 @@ class FuncionarioController extends Controller
      public function store(StoreUpdateFuncionarioClienteFormRequest $request)
     {
         funcionario::create($request->all());
-
+        $request->session()->flash('msgInsert', 'Funcionario registrado com sucesso.');
         return redirect()->route('funcionario.index');
     }
 
@@ -48,15 +48,16 @@ class FuncionarioController extends Controller
     public function update(Request $request, $id){
         $funcionario = $this->validarFuncionario($id);
         $funcionario->update($request->all());
+        $request->session()->flash('msgEdit', 'Funcionario editado com sucesso.');
 
         return redirect()->route('funcionario.index');
     }
 
-    public function delete($id)
+    public function delete(Request $request, $id)
     {
         $funcionario = $this->validarFuncionario($id);
-
-        $funcionario->delete();
+        $funcionario->update(['verificacao' => 'false']);
+        $request->session()->flash('msgDelete', 'Funcionario excluido com sucesso.');
 
         return redirect()->route('funcionario.index');
     }

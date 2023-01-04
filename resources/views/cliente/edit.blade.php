@@ -72,10 +72,33 @@
         </div>
         <div class="modal-footer">
             <a class="btn btn-primary" id="botaonav" style="margin-right: 25px;" href="{{ route('cliente.index') }}"> Voltar </a>
-            <button type="submit" class="btn btn-primary" id="botaonav">Salvar</button>
+            <button type="submit" class="submitForm btn btn-primary" id="botaonav">Salvar</button>
         </div>
     </form>
 
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script> 
+    $('.submitForm').on('click',function(e){
+            e.preventDefault();
+            var form = $(this).parents('form');
+            Swal.fire({
+            title: 'Confirmar a alteração?',
+            text: "Não será possível reverter isso!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim',
+            cancelButtonText: 'Cancelar'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                form.submit();
+            }
+            })
+    });
+    </script>
+@endpush

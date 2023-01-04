@@ -27,10 +27,10 @@ class StoreUpdateFuncionarioClienteFormRequest extends FormRequest
 
         return [
             'nome' => 'required|string|max:255|min:3',
+            'verificacao' => 'required',
             'email' => [
                 'required',
-                'email',
-                "unique:clientes,email",
+                'email'
             ],
             'telefone' => [
                 'required',

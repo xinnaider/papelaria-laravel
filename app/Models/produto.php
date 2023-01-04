@@ -16,6 +16,7 @@ class produto extends Model
         'marca',
         'estoque',
         'preco',
+        'verificacao'
     ];
 
 }

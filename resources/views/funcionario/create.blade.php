@@ -19,6 +19,7 @@
         <div class="row g-3">
             <div class="col">
                 <div class="mb-3">
+                    <input name="verificacao" value="true" type="hidden">
                     <label for="Nome" class="form-label">Nome</label>
                     <input name="nome" placeholder="Fulano da Silva" type="text" class="form-control" id="nome" required>
                 </div>

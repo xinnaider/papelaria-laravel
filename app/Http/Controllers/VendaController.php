@@ -30,9 +30,10 @@ class VendaController extends Controller
         // dd($vendas, [1, 2, 3]);
 
         // $vendas->map(function ($venda) {
+        //     dd($venda);
         //     $venda->produtosVenda->map(function($produtoVenda) {
 
-        //         dd($produtoVenda->produto);
+        //         dd($produtoVenda);
         //     });
         // });
         
@@ -44,10 +45,9 @@ class VendaController extends Controller
 
     public function create()
     {
-
-        $produto = produto::all();
-        $cliente = cliente::all();
-        $funcionario = funcionario::all();
+        $produto = produto::where('verificacao','=','true')->get();
+        $cliente = cliente::where('verificacao','=','true')->get();
+        $funcionario = funcionario::where('verificacao','=','true')->get();
         return view('venda.create', compact('produto','cliente','funcionario'));
     }
 
@@ -80,6 +80,8 @@ class VendaController extends Controller
             ]);
             DB::table('produtos')->where('id', $produtoSelecionado[0]->id)->decrement('estoque',$request->quantidade[$i]);
         };
+
+        $request->session()->flash('msgInsert', 'Venda inserida com sucesso');
 
         return redirect()->route('venda.index');
     }

@@ -56,14 +56,33 @@
         </div>
         <div class="row g-3">
             <label class="form-label">‎ </label>
-            <button type="submit" class="btn btn-primary form-control" id="botaonav">Enviar</button>
+            <button type="submit" class="submitForm btn btn-primary form-control" id="botaonav">Enviar</button>
         </div>
         </div>
             <!-- <button type="submit" class="btn btn-primary form-control" id="botaonav">Enviar</button> -->
         </div>
     </form>
 
+    </div>
+</div>
+@endsection
+
+@push('scripts')
     <script>
+        $('.submitForm').on('click',function(e){
+            e.preventDefault();
+            var form = $(this).parents('form');
+            if ($("#lista2 li").length > 0) {
+                form.submit();
+            } else {
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Você não pode registrar a venda com o carrinho vazio!',
+                });
+            };
+        });
+
         function addItem(variavel) {
             // var a = $("#lista2");
             var a = document.getElementById("lista2");
@@ -76,7 +95,7 @@
                 li.setAttribute('id', candidate);
                 li.appendChild(document.createTextNode(candidate));
                 li.classList.add("list-group-item");
-                var r= $('<input type="text" name="quantidade[]" style="width: 50px; height: 24px; margin-left: 10px;"> </input> <i class="bi bi-trash-fill" style="background-color: #ff5757; border-radius: 5px; padding: 5px; margin-left: 10px; cursor: pointer;" onclick="removeItem(this.id)" id="' + candidate + '"></i> <input style="visibility: hidden; width: 1px; height: 1px;" type="text" value="' + candidate + '" name="produto[]"></input>');
+                var r= $('<input type="text" name="quantidade[]" style="width: 50px; height: 24px; margin-left: 10px;" required> <i class="bi bi-trash-fill" style="background-color: #ff5757; border-radius: 5px; padding: 5px; margin-left: 10px; cursor: pointer;" onclick="removeItem(this.id)" id="' + candidate + '"></i> <input style="visibility: hidden; width: 1px; height: 1px;" type="text" value="' + candidate + '" name="produto[]"></input>');
                 a.appendChild(li);
                 $('#'+candidate).append(r);
             }
@@ -89,7 +108,4 @@
             $('#'+variavel).remove();
         }
     </script>
-
-    </div>
-</div>
-@endsection
+@endpush

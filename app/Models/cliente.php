@@ -16,6 +16,7 @@ class cliente extends Model
         'email',
         'cpf',
         'sexo',
-        'dataNascimento'
+        'dataNascimento',
+        'verificacao'
     ];
 }

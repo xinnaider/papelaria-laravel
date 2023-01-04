@@ -17,7 +17,7 @@ class ClienteController extends Controller
     
     public function index()
     {
-        $clientes = cliente::all();
+        $clientes = cliente::where('verificacao','=','true')->get();
 
         return view('cliente.index', compact('clientes'));
     }
@@ -30,34 +30,38 @@ class ClienteController extends Controller
     public function show($id)
     {
         $cliente = $this->validarCliente($id);
+
         return view('cliente.show', compact('cliente'));
     }
 
      public function store(StoreUpdateFuncionarioClienteFormRequest $request)
     {
         cliente::create($request->all());
+        $request->session()->flash('msgInsert', 'Cliente registrado com sucesso.');
 
         return redirect()->route('cliente.index');
     }
 
     public function edit($id){
         $cliente = $this->validarCliente($id);
+
         return view('cliente.edit', compact('cliente'));
     }
 
     public function update(Request $request, $id){
         $cliente = $this->validarCliente($id);
         $cliente->update($request->all());
+        $request->session()->flash('msgEdit', 'Cliente editado com sucesso.');
 
         return redirect()->route('cliente.index');
     }
 
-    public function delete($id)
+    public function delete(Request $request, $id)
     {
         $cliente = $this->validarCliente($id);
-
-        $cliente->delete();
-
+        $cliente->update(['verificacao' => 'false']);
+        $request->session()->flash('msgDelete', 'Cliente excluido com sucesso.');
+        
         return redirect()->route('cliente.index');
     }
 

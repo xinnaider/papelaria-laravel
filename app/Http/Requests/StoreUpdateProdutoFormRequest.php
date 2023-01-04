@@ -25,6 +25,7 @@ class StoreUpdateProdutoFormRequest extends FormRequest
     {
         return [
             'nome' => 'required|string|max:255|min:3|unique:produtos',
+            'verificacao' => 'required',
             'marca' => [
                 'required',
                 'min:3',

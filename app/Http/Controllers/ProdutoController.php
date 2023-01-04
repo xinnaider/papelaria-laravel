@@ -16,7 +16,7 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        $produtos = produto::all();
+        $produtos = produto::where('verificacao','=','true')->get();
 
         return view('produto.index', compact('produtos'));
     }
@@ -35,6 +35,7 @@ class ProdutoController extends Controller
      public function store(StoreUpdateProdutoFormRequest $request)
     {
         produto::create($request->all());
+        $request->session()->flash('msgInsert', 'Produto registrado com sucesso.');
 
         return redirect()->route('produto.index');
     }
@@ -47,15 +48,17 @@ class ProdutoController extends Controller
     public function update(Request $request, $id){
         $produto = $this->validarProduto($id);
         $produto->update($request->all());
+        $request->session()->flash('msgEdit', 'Produto editado com sucesso.');
 
         return redirect()->route('produto.index');
     }
 
-    public function delete($id)
+    public function delete(Request $request, $id)
     {
         $produto = $this->validarProduto($id);
 
-        $produto->delete();
+        $produto->update(['verificacao' => 'false']);
+        $request->session()->flash('msgDelete', 'Produto excluido com sucesso');
 
         return redirect()->route('produto.index');
     }
