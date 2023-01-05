@@ -26,7 +26,7 @@ class VendaController extends Controller
 
     public function index()
     {
-        $vendas = venda::all();
+        $vendas = Venda::all();
         // dd($vendas, [1, 2, 3]);
 
         // $vendas->map(function ($venda) {
@@ -45,10 +45,10 @@ class VendaController extends Controller
 
     public function create()
     {
-        $produto = produto::where('verificacao','=','true')->get();
-        $cliente = cliente::where('verificacao','=','true')->get();
-        $funcionario = funcionario::where('verificacao','=','true')->get();
-        return view('venda.create', compact('produto','cliente','funcionario'));
+        $produtos = Produto::where('verificacao','=','true')->get();
+        $clientes = Cliente::where('verificacao','=','true')->get();
+        $funcionarios = Funcionario::where('verificacao','=','true')->get();
+        return view('venda.create', compact('produtos','clientes','funcionarios'));
     }
 
     public function store(Request $request)
@@ -57,7 +57,7 @@ class VendaController extends Controller
         //     'cliente' => 'required|min:2'
         // ]);
         // dd($request-);
-        // venda_produto::create([
+        // VendaProduto::create([
         //     'quantidade' => $request->quantidade[$i],
         //     'venda_id' => $this->venda->id,
         //     'produto_id' => $produtoSelecionado[0]->id,

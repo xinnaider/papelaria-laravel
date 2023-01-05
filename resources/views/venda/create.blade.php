@@ -21,8 +21,8 @@
             <div class="mb-3">
                 <label for="Cliente" class="form-label">Cliente</label>
                 <select class="form-select" name="cliente" class="form-control" id="cliente" required>
-                    @foreach ($cliente as $item)
-                    <option value="{{$item->id}}">{{$item->nome}}</option>
+                    @foreach ($clientes as $cliente)
+                    <option value="{{$cliente->id}}">{{$cliente->nome}}</option>
                     @endforeach
                 </select>
             </div>
@@ -32,8 +32,8 @@
                 <div class="mb-3">
                     <label for="Funcionario" class="form-label">Vendedor</label>
                     <select class="form-select" name="funcionario" class="form-control" id="funcionario" required>
-                        @foreach ($funcionario as $item)
-                        <option value="{{$item->id}}">{{$item->nome}}</option>
+                        @foreach ($funcionarios as $funcionario)
+                        <option value="{{$funcionario->id}}">{{$funcionario->nome}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -43,8 +43,8 @@
                 <div class="col">
                     <label class="form-label">Estoque</label>
                     <ul class="list-group" id="lista1">
-                    @foreach ($produto as $item)
-                    <li class="list-group-item" id="teste" onclick="addItem(this)">{{$item->nome}}</li>
+                    @foreach ($produtos as $produto)
+                    <li class="list-group-item" id="teste" onclick="addItem(this)">{{$produto->nome}}</li>
                     @endforeach
                     </ul>
                 </div>
@@ -90,12 +90,16 @@
             var li = document.createElement("li");
 
             if (document.body.contains(document.getElementById(candidate))) {
-                window.alert('Já existe')
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Esse produto já está no carrinho!',
+                });
             } else {
                 li.setAttribute('id', candidate);
                 li.appendChild(document.createTextNode(candidate));
                 li.classList.add("list-group-item");
-                var r= $('<input type="text" name="quantidade[]" style="width: 50px; height: 24px; margin-left: 10px;" required> <i class="bi bi-trash-fill" style="background-color: #ff5757; border-radius: 5px; padding: 5px; margin-left: 10px; cursor: pointer;" onclick="removeItem(this.id)" id="' + candidate + '"></i> <input style="visibility: hidden; width: 1px; height: 1px;" type="text" value="' + candidate + '" name="produto[]"></input>');
+                var r= $('<input type="text" name="quantidade[]" style="width: 50px; height: 24px; margin-left: 10px;" required> <i class="bi bi-trash-fill" style="background-color: #ff5757; border-radius: 5px; padding: 5px; margin-left: 10px; cursor: pointer;" onclick="removeItem(this.id)" id="' + candidate + '"></i> <input style="visibility: hidden; width: 1px; height: 1px;" type="text" value="' + candidate + '" name="produto[]">');
                 a.appendChild(li);
                 $('#'+candidate).append(r);
             }

@@ -16,7 +16,7 @@ class ProdutoController extends Controller
      */
     public function index()
     {
-        $produtos = produto::where('verificacao','=','true')->get();
+        $produtos = Produto::where('verificacao','=','true')->get();
 
         return view('produto.index', compact('produtos'));
     }
@@ -34,7 +34,7 @@ class ProdutoController extends Controller
 
      public function store(StoreUpdateProdutoFormRequest $request)
     {
-        produto::create($request->all());
+        Produto::create($request->all());
         $request->session()->flash('msgInsert', 'Produto registrado com sucesso.');
 
         return redirect()->route('produto.index');
@@ -64,7 +64,7 @@ class ProdutoController extends Controller
     }
 
     public function validarProduto($id){
-        if (!$produto = produto::find($id)){
+        if (!$produto = Produto::find($id)){
             return redirect()->route('produto.index');
         }
 

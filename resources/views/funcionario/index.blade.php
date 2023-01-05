@@ -16,18 +16,18 @@
                     <th>Data de Nascimento</th>
                     <th>Funções</th>
                 </tr>
-                @foreach ($funcionarios as $item)
+                @foreach ($funcionarios as $funcionario)
                     <tr>
-                        <td align="center"> {{ $item->nome }} </td>
-                        <td align="center"> {{ $item->telefone }} </td>
-                        <td align="center"> {{ $item->email }} </td>
-                        <td align="center"> {{ $item->cpf }} </td>
-                        <td align="center"> {{ $item->sexo }} </td>
-                        <td align="center"> {{  date("d/m/Y", strtotime($item->dataNascimento)) }} </td>
+                        <td align="center"> {{ $funcionario->nome }} </td>
+                        <td align="center"> {{ $funcionario->telefone }} </td>
+                        <td align="center"> {{ $funcionario->email }} </td>
+                        <td align="center"> {{ $funcionario->cpf }} </td>
+                        <td align="center"> {{ $funcionario->sexo }} </td>
+                        <td align="center"> {{  date("d/m/Y", strtotime($funcionario->dataNascimento)) }} </td>
                         <td> 
                             <div style="display: flex; justify-content: space-evenly;">
-                            <a class="btn btn-primary" href="{{ route('funcionario.edit', $item->id) }}" role="button" id="botaonav"> <i class="bi bi-pencil-square"></i>  </a>
-                            <form action="{{route('funcionario.delete', $item->id)}}" method="POST">
+                            <a class="btn btn-primary" href="{{ route('funcionario.edit', $funcionario->id) }}" role="button" id="botaonav"> <i class="bi bi-pencil-square"></i>  </a>
+                            <form action="{{route('funcionario.delete', $funcionario->id)}}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <button class="submitForm btn btn-primary" type="submit" id="botaonav"> <i class="bi bi-trash"></i> </button>

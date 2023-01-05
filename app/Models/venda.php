@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\venda_produto;
+use App\Models\VendaProduto;
 use App\Models\funcionario;
 use App\Models\cliente;
 
@@ -22,7 +22,7 @@ class venda extends Model
 
     public function produtosVenda()
     {
-        return $this->hasMany(venda_produto::class, 'venda_id', 'id');
+        return $this->hasMany(VendaProduto::class, 'venda_id', 'id');
     }
 
     public function funcionario()

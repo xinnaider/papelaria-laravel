@@ -16,19 +16,19 @@
                     <th>Data de Nascimento</th>
                     <th>Funções</th>
                 </tr>
-                @foreach ($clientes as $item)
+                @foreach ($clientes as $cliente)
                     <tr>
-                        <td align="center"> {{ $item->nome }} </td>
-                        <td align="center"> {{ $item->telefone }} </td>
-                        <td align="center"> {{ $item->email }} </td>
-                        <td align="center"> {{ $item->cpf }} </td>
-                        <td align="center"> {{ $item->sexo }} </td>
-                        <td align="center"> {{  date("d/m/Y", strtotime($item->dataNascimento)) }} </td>
+                        <td align="center"> {{ $cliente->nome }} </td>
+                        <td align="center"> {{ $cliente->telefone }} </td>
+                        <td align="center"> {{ $cliente->email }} </td>
+                        <td align="center"> {{ $cliente->cpf }} </td>
+                        <td align="center"> {{ $cliente->sexo }} </td>
+                        <td align="center"> {{  date("d/m/Y", strtotime($cliente->dataNascimento)) }} </td>
                         <td> 
                             <div style="display: flex; justify-content: space-evenly;">
-                            <a class="btn btn-primary" href="{{ route('cliente.edit', $item->id) }}" role="button" id="botaonav"> <i class="bi bi-pencil-square"></i>  </a>
+                            <a class="btn btn-primary" href="{{ route('cliente.edit', $cliente->id) }}" role="button" id="botaonav"> <i class="bi bi-pencil-square"></i>  </a>
                             <!-- <button class="submitForm btn btn-primary" id="teste"> <i class="bi bi-trash"></i> </button> -->
-                            <form action="{{route('cliente.delete', $item->id)}}" method="POST">
+                            <form action="{{route('cliente.delete', $cliente->id)}}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <button class="submitForm btn btn-primary" type="submit" id="botaonav"> <i class="bi bi-trash"></i> </button>
