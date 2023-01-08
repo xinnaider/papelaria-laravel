@@ -22,18 +22,18 @@
                         <td align="center"> {{ $item->estoque }} (u) </td>
                         <td style="width: 200px;"> 
                             <div style="display: flex; justify-content: space-evenly;">
-                            <a class="btn btn-primary" href="{{ route('produto.edit', $item->id) }}" role="button" id="botaonav"> <i class="bi bi-pencil-square"></i>  </a>
+                            <a class="botoes btn btn-primary" href="{{ route('produto.edit', $item->id) }}" role="button"> <i class="bi bi-pencil-square"></i>  </a>
                             <form action="{{route('produto.delete', $item->id)}}" method="POST">
                                 @method('DELETE')
                                 @csrf
-                                <button class="submitForm btn btn-primary" type="submit" id="botaonav"> <i class="bi bi-trash"></i> </button>
+                                <button class="submitForm botoes btn btn-primary" type="submit"> <i class="bi bi-trash"></i> </button>
                             </form> 
                             </div>
                         </td>
                     </tr>
                 @endforeach
             </table>
-            <a class="btn btn-primary" id="botaonav" href="{{ route('produto.create') }}" style="margin-top: 20px;" role="button">Registrar produto</a>
+            <a class="botoes btn btn-primary" href="{{ route('produto.create') }}" style="margin-top: 20px;" role="button">Registrar produto</a>
         </div>
     </div>
 @endsection

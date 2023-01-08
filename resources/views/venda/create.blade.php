@@ -55,8 +55,8 @@
                 </div>
         </div>
         <div class="row g-3">
-            <label class="form-label">‎ </label>
-            <button type="submit" class="submitForm btn btn-primary form-control" id="botaonav">Enviar</button>
+            <label class="form-label">‎</label>
+            <button type="submit" class="submitForm botoes btn btn-primary form-control">Enviar</button>
         </div>
         </div>
             <!-- <button type="submit" class="btn btn-primary form-control" id="botaonav">Enviar</button> -->
@@ -69,20 +69,6 @@
 
 @push('scripts')
     <script>
-        $('.submitForm').on('click',function(e){
-            e.preventDefault();
-            var form = $(this).parents('form');
-            if ($("#lista2 li").length > 0) {
-                form.submit();
-            } else {
-                Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Você não pode registrar a venda com o carrinho vazio!',
-                });
-            };
-        });
-
         function addItem(variavel) {
             // var a = $("#lista2");
             var a = document.getElementById("lista2");
@@ -96,10 +82,19 @@
                 text: 'Esse produto já está no carrinho!',
                 });
             } else {
+                // $('<li>'); // cria o elemento em jquery
+
+                // $('<li>', {
+                //     id: caditate,
+                //     class: '',
+                //     style: '',
+                // }); // cria o elemento configurando alguns atributos
+                // $('<li>').append('input'); // inseri um elemento
+
                 li.setAttribute('id', candidate);
                 li.appendChild(document.createTextNode(candidate));
                 li.classList.add("list-group-item");
-                var r= $('<input type="text" name="quantidade[]" style="width: 50px; height: 24px; margin-left: 10px;" required> <i class="bi bi-trash-fill" style="background-color: #ff5757; border-radius: 5px; padding: 5px; margin-left: 10px; cursor: pointer;" onclick="removeItem(this.id)" id="' + candidate + '"></i> <input style="visibility: hidden; width: 1px; height: 1px;" type="text" value="' + candidate + '" name="produto[]">');
+                var r= $('<input type="text" name="quantidade[]" style="width: 50px; height: 24px; margin-left: 10px;" class="inputcarrinho"> <i class="bi bi-trash-fill" style="background-color: #ff5757; border-radius: 5px; padding: 5px; margin-left: 10px; cursor: pointer;" onclick="removeItem(this.id)" id="' + candidate + '"></i> <input style="visibility: hidden; width: 1px; height: 1px;" type="text" value="' + candidate + '" name="produto[]">');
                 a.appendChild(li);
                 $('#'+candidate).append(r);
             }
@@ -111,5 +106,39 @@
             // Declaring a variable to get select element
             $('#'+variavel).remove();
         }
+
+        $('.submitForm').on('click',function(e){
+            var form = $(this).parents('form');
+            e.preventDefault();
+            if ($("#lista2 li").length > 0) {
+                var cont = 0;
+                $(".inputcarrinho").each(function(){
+                    if($(this).val() == "")
+                    {
+                        if(cont === 0){
+                            Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Você precisa colocar a quantidade no produto a ser vendido',
+                            });
+                            cont++;
+                        }
+                    }
+                })
+
+                if( cont === 0 ){
+                    console.log('enviado');
+                }
+            } else {
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Você não pode registrar a venda com o carrinho vazio!',
+                });
+            };
+        });
+
+
+
     </script>
 @endpush

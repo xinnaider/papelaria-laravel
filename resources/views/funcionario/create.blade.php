@@ -64,8 +64,8 @@
             </div>
         </div>
         <div class="modal-footer">
-            <a class="btn btn-primary" id="botaonav" style="margin-right: 25px;" href="{{ route('funcionario.index') }}"> Voltar </a>
-            <button type="submit" class="btn btn-primary" id="botaonav">Salvar</button>
+            <a class="botoes btn btn-primary"  style="margin-right: 25px;" href="{{ route('funcionario.index') }}"> Voltar </a>
+            <button type="submit" class="botoes btn btn-primary" >Salvar</button>
         </div>
     </form>
 

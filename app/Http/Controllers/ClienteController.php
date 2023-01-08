@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreUpdateFuncionarioClienteFormRequest;
-use App\Models\cliente;
+use App\Models\Cliente;
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -27,11 +27,13 @@ class ClienteController extends Controller
         return view('cliente.create');
     }
 
-    public function show($id)
+    public function show(Cliente $cliente)
     {
-        $clientes = $this->validarCliente($id);
+        // $clientes = $this->validarCliente($id);
+        // tem uma maneira mais Laravel de encontrar o cliente: foi o thaalyys q fez isso 
+        // vou te ensinar uma mais top kk blz
 
-        return view('cliente.show', compact('clientes'));
+        return view('cliente.show', compact('cliente'));
     }
 
      public function store(StoreUpdateFuncionarioClienteFormRequest $request)
@@ -42,34 +44,22 @@ class ClienteController extends Controller
         return redirect()->route('cliente.index');
     }
 
-    public function edit($id){
-        $clientes = $this->validarCliente($id);
-
-        return view('cliente.edit', compact('clientes'));
+    public function edit(Cliente $cliente){
+        return view('cliente.edit', compact('cliente'));
     }
 
-    public function update(Request $request, $id){
-        $cliente = $this->validarCliente($id);
+    public function update(Request $request, Cliente $cliente){
         $cliente->update($request->all());
         $request->session()->flash('msgEdit', 'Cliente editado com sucesso.');
 
         return redirect()->route('cliente.index');
     }
 
-    public function delete(Request $request, $id)
+    public function delete(Request $request, Cliente $cliente)
     {
-        $cliente = $this->validarCliente($id);
         $cliente->update(['verificacao' => 'false']);
         $request->session()->flash('msgDelete', 'Cliente excluido com sucesso.');
         
         return redirect()->route('cliente.index');
-    }
-
-    public function validarCliente($id){
-        if (!$cliente = Cliente::find($id)){
-            return redirect()->route('cliente.index');
-        }
-
-        return $cliente;
     }
 }

@@ -15,12 +15,21 @@
           <a class="navbar-brand" href="#">
             <img src="{{ asset('imgs/papelaria.png') }}" alt="Logo" width="75" class="d-inline-block align-text-top">
             <div class="d-flex justify-content-end">
-            <a class="btn p-2 px-3 m-3 nav-link" id="botaonav" aria-current="page" href="{{ url('/') }}">Inicio</a>
-            <a class="btn p-2 px-3 m-3 nav-link" id="botaonav" href="{{ route('cliente.index') }}">Cliente</a>
-            <a class="btn p-2 px-3 m-3 nav-link" id="botaonav" href="{{ route('funcionario.index') }}">Funcionario</a>
-            <a class="btn p-2 px-3 m-3 nav-link" id="botaonav" href="{{ route('produto.index') }}">Produto</a>
-            <a class="btn p-2 px-3 m-3 nav-link" id="botaonav" href="{{ route('venda.index') }}">Venda</a>
+            <a class="botoes btn p-2 px-3 m-3 nav-link" aria-current="page" href="{{ url('/') }}">Inicio</a>
+            <a class="botoes btn p-2 px-3 m-3 nav-link" href="{{ route('cliente.index') }}">Cliente</a>
+            <a class="botoes btn p-2 px-3 m-3 nav-link" href="{{ route('funcionario.index') }}">Funcionario</a>
+            <a class="botoes btn p-2 px-3 m-3 nav-link" href="{{ route('produto.index') }}">Produto</a>
+            <a class="botoes btn p-2 px-3 m-3 nav-link" href="{{ route('venda.index') }}">Venda</a>
             </div>
+            {{-- 
+              pra usar o seu css como principal vc tem que priorizar na hora de escrever: !important saquei, eu li sobre isso hjjj mas n sabia q serviaa bem p isso
+              só que na teoria isso é uma má pratica kkk, mas contra o bootrap não tem o que fazer kkk melhor q deixar o mesmo id em tudo kkkkkim ssim vou arrumar
+
+              OUtra coisa, arrumei os models e as variaaveis q vc falou
+
+              tem alguma coisa q você acha q eu preciso adicionar ou algo do tipo? queria finalziar logo :')'
+              dx eu ver kkk
+              --}}
           </a>
         </div>
       </nav>

@@ -24,7 +24,7 @@
                         <td align="center">{{ $venda->funcionario->nome }}</td>
                         <td align="center">{{ $venda->cliente->nome }}</td>
                         <td align="center">{{ $venda->dataHora }}</td>
-                        <td align="center" style="width: 200px;"><button type="button" id="botaonav" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{$venda->id}}"> <i class="bi bi-box2-fill"></i> </button></td>
+                        <td align="center" style="width: 200px;"><button type="button" class="botoes btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{$venda->id}}"> <i class="bi bi-box2-fill"></i> </button></td>
                     </tr>
                 @endforeach
             </table>
@@ -55,13 +55,13 @@
                     </table>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" id="botaonav" data-bs-dismiss="modal">Fechar</button>
+                        <button type="button" class="botoes btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                     </div>
                     </div>
                 </div>
                 </div>
             @endforeach
-            <a class="btn btn-primary" id="botaonav" href="{{ route('venda.create') }}" style="margin-top: 20px;" role="button">Cadastrar venda</a>
+            <a class="botoes btn btn-primary" href="{{ route('venda.create') }}" style="margin-top: 20px;" role="button">Cadastrar venda</a>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>

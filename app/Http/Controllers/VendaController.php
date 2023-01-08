@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\produto;
-use App\Models\cliente;
-use App\Models\funcionario;
-use App\Models\venda;
+use App\Models\Produto;
+use App\Models\Cliente;
+use App\Models\Funcionario;
+use App\Models\Venda;
 use DB;
 
 class VendaController extends Controller
@@ -27,18 +27,6 @@ class VendaController extends Controller
     public function index()
     {
         $vendas = Venda::all();
-        // dd($vendas, [1, 2, 3]);
-
-        // $vendas->map(function ($venda) {
-        //     dd($venda);
-        //     $venda->produtosVenda->map(function($produtoVenda) {
-
-        //         dd($produtoVenda);
-        //     });
-        // });
-        
-        // dd($vendas->get(0)->produtos);
-        // dd($vendas);
 
         return view('venda.index', compact('vendas'));
     }
@@ -53,15 +41,6 @@ class VendaController extends Controller
 
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'cliente' => 'required|min:2'
-        // ]);
-        // dd($request-);
-        // VendaProduto::create([
-        //     'quantidade' => $request->quantidade[$i],
-        //     'venda_id' => $this->venda->id,
-        //     'produto_id' => $produtoSelecionado[0]->id,
-        // ]);
 
         $this->venda = new venda();
         $this->venda->dataHora = new \DateTime();

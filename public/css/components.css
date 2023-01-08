@@ -1,10 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Unbounded&display=swap');
 
-#botaonav {
-    background-color: #ff5757; 
-    color: white;
-    font-size: 17px;
-    border-color: transparent;
+.botoes {
+    background-color: #ff5757 !important; 
+    color: white !important;
+    font-size: 17px !important;
+    border: dotted 3px #e74747 !important;
+    font-weight: 500 !important;
+}
+
+.botoes:hover{
+    background-color: #d14d4d !important; 
+    transition: 0.5s;
 }
 
 table {

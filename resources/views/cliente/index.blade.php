@@ -26,19 +26,19 @@
                         <td align="center"> {{  date("d/m/Y", strtotime($cliente->dataNascimento)) }} </td>
                         <td> 
                             <div style="display: flex; justify-content: space-evenly;">
-                            <a class="btn btn-primary" href="{{ route('cliente.edit', $cliente->id) }}" role="button" id="botaonav"> <i class="bi bi-pencil-square"></i>  </a>
+                            <a class="botoes btn btn-primary" href="{{ route('cliente.edit', $cliente->id) }}" role="button"> <i class="bi bi-pencil-square"></i>  </a>
                             <!-- <button class="submitForm btn btn-primary" id="teste"> <i class="bi bi-trash"></i> </button> -->
                             <form action="{{route('cliente.delete', $cliente->id)}}" method="POST">
                                 @method('DELETE')
                                 @csrf
-                                <button class="submitForm btn btn-primary" type="submit" id="botaonav"> <i class="bi bi-trash"></i> </button>
+                                <button class="submitForm botoes btn btn-primary" type="submit"> <i class="bi bi-trash"></i> </button>
                             </form> 
                             </div>
                         </td>
                     </tr>
                 @endforeach
             </table>
-            <a class="btn btn-primary" id="botaonav" href="{{ route('cliente.create') }}" style="margin-top: 20px;" role="button">Registrar cliente</a>
+            <a class="botoes btn btn-primary" href="{{ route('cliente.create') }}" style="margin-top: 20px;" role="button">Registrar cliente</a>
         </div>
     </div>
 @endsection

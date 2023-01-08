@@ -26,18 +26,18 @@
                         <td align="center"> {{  date("d/m/Y", strtotime($funcionario->dataNascimento)) }} </td>
                         <td> 
                             <div style="display: flex; justify-content: space-evenly;">
-                            <a class="btn btn-primary" href="{{ route('funcionario.edit', $funcionario->id) }}" role="button" id="botaonav"> <i class="bi bi-pencil-square"></i>  </a>
+                            <a class="botoes btn btn-primary" href="{{ route('funcionario.edit', $funcionario->id) }}" role="button"> <i class="bi bi-pencil-square"></i>  </a>
                             <form action="{{route('funcionario.delete', $funcionario->id)}}" method="POST">
                                 @method('DELETE')
                                 @csrf
-                                <button class="submitForm btn btn-primary" type="submit" id="botaonav"> <i class="bi bi-trash"></i> </button>
+                                <button class="submitForm botoes btn btn-primary" type="submit"> <i class="bi bi-trash"></i> </button>
                             </form> 
                             </div>
                         </td>
                     </tr>
                 @endforeach
             </table>
-            <a class="btn btn-primary" id="botaonav" href="{{ route('funcionario.create') }}" style="margin-top: 20px;" role="button">Registrar funcionario</a>
+            <a class="botoes btn btn-primary" href="{{ route('funcionario.create') }}" style="margin-top: 20px;" role="button">Registrar funcionario</a>
         </div>
     </div>
 @endsection

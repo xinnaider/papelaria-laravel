@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreUpdateFuncionarioClienteFormRequest;
-use App\Models\funcionario;
+use App\Models\Funcionario;
 
 class FuncionarioController extends Controller
 {
@@ -27,9 +27,8 @@ class FuncionarioController extends Controller
         return view('funcionario.create');
     }
 
-    public function show($id)
+    public function show(Funcionario $funcionario)
     {
-        $funcionario = $this->validarFuncionario($id);
         return view('funcionario.show', compact('funcionario'));
     }
 
@@ -40,33 +39,22 @@ class FuncionarioController extends Controller
         return redirect()->route('funcionario.index');
     }
 
-    public function edit($id){
-        $funcionario = $this->validarFuncionario($id);
+    public function edit(Funcionario $funcionario){
         return view('funcionario.edit', compact('funcionario'));
     }
 
-    public function update(Request $request, $id){
-        $funcionario = $this->validarFuncionario($id);
+    public function update(Request $request, Funcionario $funcionario){
         $funcionario->update($request->all());
         $request->session()->flash('msgEdit', 'Funcionario editado com sucesso.');
 
         return redirect()->route('funcionario.index');
     }
 
-    public function delete(Request $request, $id)
+    public function delete(Request $request, Funcionario $funcionario)
     {
-        $funcionario = $this->validarFuncionario($id);
         $funcionario->update(['verificacao' => 'false']);
         $request->session()->flash('msgDelete', 'Funcionario excluido com sucesso.');
 
         return redirect()->route('funcionario.index');
-    }
-
-    public function validarfuncionario($id){
-        if (!$funcionario = Funcionario::find($id)){
-            return redirect()->route('funcionario.index');
-        }
-
-        return $funcionario;
     }
 }
