@@ -41,8 +41,9 @@ class VendaController extends Controller
 
     public function store(Request $request)
     {
-
         $this->venda = new venda();
+        $this->venda->metodoPagamento = $request->metodoPagamento;
+        $this->venda->valorTotal = $request->valorTotal;
         $this->venda->dataHora = new \DateTime();
         $this->venda->funcionario_id = $request->funcionario;
         $this->venda->cliente_id = $request->cliente;

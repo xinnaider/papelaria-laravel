@@ -15,6 +15,8 @@ class venda extends Model
     protected $table = "vendas"; 
     
     protected $fillable = [
+        'metodoPagamento',
+        'valorTotal',
         'dataHora',
         'funcionario_id',
         'cliente_id'

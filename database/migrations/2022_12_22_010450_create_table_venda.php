@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('vendas', function (Blueprint $table) {
             $table->id();
+            $table->string('metodoPagamento');
+            $table->string('valorTotal');
             $table->timestamp('dataHora');
             $table->integer('funcionario_id')->unsigned();
             $table->foreign('funcionario_id')->references('id')->on('funcionarios');

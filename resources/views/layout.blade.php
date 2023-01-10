@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
     <head>
-        <title>Page Title</title>
+        <title>Papelaria Cia.</title>
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <!-- Styles -->
         <link href="{{ asset('css/components.css') }}" rel="stylesheet">
         <link href="{{ asset('css/layout.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/venda.css') }}" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
       </head>
@@ -13,23 +14,14 @@
       <nav class="navbar" style="margin-bottom: 30px; background-color:#e9f2f9; border-bottom: 5px solid #ff5757">
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
-            <img src="{{ asset('imgs/papelaria.png') }}" alt="Logo" width="75" class="d-inline-block align-text-top">
+            <img src="{{ asset('imgs/papelaria.png') }}" onclick=" window.location.href = '{{ route('inicial.index') }}'" alt="Logo" width="75" class="d-inline-block align-text-top">
             <div class="d-flex justify-content-end">
-            <a class="botoes btn p-2 px-3 m-3 nav-link" aria-current="page" href="{{ url('/') }}">Inicio</a>
+            <a class="botoes btn p-2 px-3 m-3 nav-link" aria-current="page" href="{{ route('inicial.index') }}">Inicio</a>
             <a class="botoes btn p-2 px-3 m-3 nav-link" href="{{ route('cliente.index') }}">Cliente</a>
             <a class="botoes btn p-2 px-3 m-3 nav-link" href="{{ route('funcionario.index') }}">Funcionario</a>
             <a class="botoes btn p-2 px-3 m-3 nav-link" href="{{ route('produto.index') }}">Produto</a>
             <a class="botoes btn p-2 px-3 m-3 nav-link" href="{{ route('venda.index') }}">Venda</a>
             </div>
-            {{-- 
-              pra usar o seu css como principal vc tem que priorizar na hora de escrever: !important saquei, eu li sobre isso hjjj mas n sabia q serviaa bem p isso
-              só que na teoria isso é uma má pratica kkk, mas contra o bootrap não tem o que fazer kkk melhor q deixar o mesmo id em tudo kkkkkim ssim vou arrumar
-
-              OUtra coisa, arrumei os models e as variaaveis q vc falou
-
-              tem alguma coisa q você acha q eu preciso adicionar ou algo do tipo? queria finalziar logo :')'
-              dx eu ver kkk
-              --}}
           </a>
         </div>
       </nav>

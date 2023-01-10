@@ -1,0 +1,64 @@
+.conteudolista:hover{
+    background-color: rgb(101, 240, 166) !important;
+    transition: 0.3s;
+}
+
+.estilizacaolista{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+}
+
+.estilizacaolistacarrinho{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+}
+
+.botaoadicionar{
+    color: rgb(20, 187, 20) !important;
+    text-align: center;
+    font-size: 25px;
+    cursor:pointer;
+}
+
+.botaoadicionar:hover{
+    color: rgb(7, 133, 7) !important;
+    transition: 0.3s;
+}
+
+.botaoremover{
+    color: rgb(235, 46, 21) !important;
+    cursor:pointer;
+    text-align: center;
+    font-size: 25px;
+    width: 70px;
+}
+
+.botaoremover:hover{
+    color: rgb(204, 32, 9) !important;
+    transition: 0.3s;
+}
+
+.textotabela{
+    font-weight: 550 !important;
+}
+
+.valorBloco{
+    background-color: black !important;
+    width: 350px !important;
+}
+
+.valorBloco label{
+    font-weight: 550 !important;
+    font-size: 20px;
+    color: rgb(3, 201, 3);
+}
+
+.valorBloco input{
+    font-weight: 550 !important;
+    font-size: 20px;
+    border: transparent;
+    color: rgb(3, 201, 3);
+    background-color: black !important;
+}

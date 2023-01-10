@@ -33,7 +33,14 @@ class ProdutoController extends Controller
 
      public function store(StoreUpdateProdutoFormRequest $request)
     {
-        Produto::create($request->all());
+        $produto = new Produto;
+        $produto->nome = $request->nome;
+        $produto->marca = $request->marca;
+        $produto->estoque = $request->estoque;
+        $produto->preco = str_replace(',', '.', str_replace('.', '', $request->preco));
+        $produto->verificacao = $request->verificacao;
+        $produto->save();
+        
         $request->session()->flash('msgInsert', 'Produto registrado com sucesso.');
 
         return redirect()->route('produto.index');
