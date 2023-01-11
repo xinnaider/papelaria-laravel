@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('funcionarios', function (Blueprint $table) {
+        Schema::table('Vendedores', function (Blueprint $table) {
             $table->timestamp('updated_at');
             $table->timestamp('created_at');
         });

@@ -19,4 +19,8 @@ class cliente extends Model
         'dataNascimento',
         'verificacao'
     ];
+
+    protected $casts = [
+        'dataNascimento' => 'datetime'
+    ];
 }

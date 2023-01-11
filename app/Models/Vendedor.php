@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class funcionario extends Model
+class Vendedor extends Model
 {
     use HasFactory;
 
-    protected $table = "funcionarios"; 
+    protected $table = "Vendedores"; 
     
     protected $fillable = [
         'nome',
@@ -19,5 +19,9 @@ class funcionario extends Model
         'sexo',
         'dataNascimento',
         'verificacao'
+    ];
+
+    protected $casts = [
+        'dataNascimento' => 'datetime'
     ];
 }

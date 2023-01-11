@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreUpdateFuncionarioClienteFormRequest;
+use App\Http\Requests\StoreUpdateVendedorClienteFormRequest;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 
@@ -36,7 +36,7 @@ class ClienteController extends Controller
         return view('cliente.show', compact('cliente'));
     }
 
-     public function store(StoreUpdateFuncionarioClienteFormRequest $request)
+     public function store(StoreUpdateVendedorClienteFormRequest $request)
     {
         Cliente::create($request->all());
         $request->session()->flash('msgInsert', 'Cliente registrado com sucesso.');

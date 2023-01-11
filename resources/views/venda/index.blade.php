@@ -1,24 +1,33 @@
 @extends('layout')
 
 @section('content')
-
-
-{{-- {{ isset($errors) ? $errors: 'Não tem erro' }} --}}
-
     <div class="container d-flex justify-content-center">
         <div class="container mt-3" style="margin-bottom: 50px">
+            <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+                <ol class="breadcrumb" style="font-size: 20px;">
+                    <li class="breadcrumb-item"><a href="{{route('inicial.index')}}" style="color: red !important;">Inicio</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Vendas</li>
+                </ol>
+            </nav>
             <div style="margin-bottom: 25px; border-radius: 25px; background-color: #ff5757; height: 100px"> 
                 <h1 style="color: white; text-align: center; padding-bottom: 25px; padding-top: 25px;"> Vendas 🛒 </h1>
             </div>
-            <div class="input-group flex-nowrap" style="margin-bottom: 25px; width: 300px;">
-                <span class="input-group-text" id="addon-wrapping"><i class="bi bi-search"></i>                </span>
-                <input type="text" id="filtro" class="form-control" placeholder="Pesquisar" aria-label="Username" aria-describedby="addon-wrapping">
+            <div class="row g-3" style="margin-bottom: 25px;">
+                <div class="col">
+                    <div class="input-group flex-nowrap" style="width: 300px;">
+                        <span class="input-group-text" id="addon-wrapping"><i class="bi bi-search"></i> </span>
+                        <input type="text" id="filtro" class="form-control" placeholder="Pesquisar" aria-label="Username" aria-describedby="addon-wrapping">
+                    </div>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <a class="botoes btn btn-primary" href="{{ route('venda.create') }}" style="width: 300px;" role="button"> Realizar venda </a>
+                </div>
             </div>
             <table id="tabelavenda">
                 <thead>
                 <tr>
                     <th> # </th>
-                    <th> Funcionario </th>
+                    <th> Vendedor </th>
                     <th> Cliente </th>
                     <th> Método de Pagamento </th>
                     <th> Valor total vendido </th>
@@ -30,12 +39,12 @@
                 @foreach ($vendas as $venda)
                     <tr>
                         <td align="center" style="width: 50px;">#{{ $venda->id }}</td>
-                        <td align="center">{{ $venda->funcionario->nome }}</td>
+                        <td align="center">{{ $venda->Vendedor->nome }}</td>
                         <td align="center">{{ $venda->cliente->nome }}</td>
                         <td align="center">{{ $venda->metodoPagamento }}</td>
                         <td align="center">R$ {{ $venda->valorTotal }}</td>
-                        <td align="center">{{ $venda->dataHora }}</td>
-                        <td align="center" style="width: 200px;"><button type="button" class="botoes btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{$venda->id}}"> <i class="bi bi-box2-fill"></i> </button></td>
+                        <td align="center">{{ $venda->dataHora->format('d-m-Y / H:i:s') }}</td>
+                        <td align="center" style="width: 200px;"><button type="button" style="border-radius: 25px !important;" class="botoes btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{$venda->id}}"> <i class="bi bi-box2-fill"></i> </button></td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -77,11 +86,8 @@
                 </div>
                 </div>
             @endforeach
-            <a class="botoes btn btn-primary" href="{{ route('venda.create') }}" style="margin-top: 20px;" role="button">Cadastrar venda</a>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 @endsection
 
 @push('scripts')

@@ -2,15 +2,15 @@
 
 @section('content')
     <div class="container d-flex justify-content-center">
-        <div class="container mt-3" style="margin-bottom: 50px">
+        <div class="container mt-3" style="margin-bottom: 50px"> 
             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
                 <ol class="breadcrumb" style="font-size: 20px;">
                     <li class="breadcrumb-item"><a href="{{route('inicial.index')}}" style="color: red !important;">Inicio</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Produtos</li>
+                    <li class="breadcrumb-item active" aria-current="page">Vendedores</li>
                 </ol>
             </nav>
             <div style="margin-bottom: 25px; border-radius: 25px; background-color: #ff5757; height: 100px"> 
-                <h1 style="color: white; text-align: center; padding-bottom: 25px; padding-top: 25px;"> Produtos 📦</h1>
+                <h1 style="color: white; text-align: center; padding-bottom: 25px; padding-top: 25px;"> Vendedores 🧑‍🔧</h1>
             </div>
             <div class="row g-3" style="margin-bottom: 25px;">
                 <div class="col">
@@ -20,30 +20,34 @@
                     </div>
                 </div>
                 <div class="col d-flex justify-content-end">
-                    <a class="botoes btn btn-primary" href="{{ route('produto.create') }}" style="width: 300px;" role="button">Cadastrar produto</a>
+                    <a class="botoes btn btn-primary" href="{{ route('vendedor.create') }}" style="width: 300px;" role="button">Cadastrar vendedor</a>
                 </div>
             </div>
-            <table id="tabelaproduto">
+            <table id="tabelaVendedor">
                 <thead>
                     <tr>
                         <th>Nome</th>
-                        <th>Marca</th>
-                        <th>Preço</th>
-                        <th>Estoque</th>
+                        <th>Telefone</th>
+                        <th>Email</th>
+                        <th>CPF</th>
+                        <th>Sexo</th>
+                        <th>Data de Nascimento</th>
                         <th>Funções</th>
                     </tr>
                 </thead>
                 <tbody>
-                @foreach ($produtos as $item)
+                @foreach ($Vendedores as $Vendedor)
                     <tr>
-                        <td align="center"> {{ $item->nome }} </td>
-                        <td align="center"> {{ $item->marca }} </td>
-                        <td align="center"> R$ {{ $item->preco }} </td>
-                        <td align="center"> {{ $item->estoque }} (u) </td>
-                        <td style="width: 200px;"> 
+                        <td align="center"> {{ $Vendedor->nome }} </td>
+                        <td align="center"> {{ $Vendedor->telefone }} </td>
+                        <td align="center"> {{ $Vendedor->email }} </td>
+                        <td align="center"> {{ $Vendedor->cpf }} </td>
+                        <td align="center"> {{ $Vendedor->sexo }} </td>
+                        <td align="center"> {{  date("d/m/Y", strtotime($Vendedor->dataNascimento)) }} </td>
+                        <td> 
                             <div style="display: flex; justify-content: space-evenly;">
-                            <a style="border-radius: 25px !important;" class="botoes btn btn-primary" href="{{ route('produto.edit', $item->id) }}" role="button"> <i class="bi bi-pencil-square"></i>  </a>
-                            <form action="{{route('produto.delete', $item->id)}}" method="POST">
+                            <a style="border-radius: 25px !important;" class="botoes btn btn-primary" href="{{ route('vendedor.edit', $Vendedor->id) }}" role="button"> <i class="bi bi-pencil-square"></i>  </a>
+                            <form action="{{route('vendedor.delete', $Vendedor->id)}}" method="POST">
                                 @method('DELETE')
                                 @csrf
                                 <button style="border-radius: 25px !important;" class="submitForm botoes btn btn-primary" type="submit"> <i class="bi bi-trash"></i> </button>
@@ -62,7 +66,7 @@
     <script> 
     $('#filtro').on('keyup', function () {
         var search = $(this).val().toLowerCase();
-        $('#tabelaproduto tbody tr').filter(function(){
+        $('#tabelaVendedor tbody tr').filter(function(){
             console.log($(this).text());
             $(this).toggle($(this).text().toLowerCase().indexOf(search) > -1);
         });

@@ -4,11 +4,17 @@
 {{-- {{ $errors ?? 'Não tem erro' }} --}}
 <div class="container d-flex justify-content-center">
     <div class="container mt-3" style="margin-bottom: 50px;">
-
+        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+            <ol class="breadcrumb" style="font-size: 20px;">
+                <li class="breadcrumb-item"><a href="{{route('inicial.index')}}" style="color: red !important;">Inicio</a></li>
+                <li class="breadcrumb-item"><a href="{{route('venda.index')}}" style="color: red !important;">Vendas</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Realizar venda</li>
+            </ol>
+        </nav>
     <div style="margin-bottom: 50px; border-radius: 25px; background-color: #ff5757; height: 100px"> 
             <h1 style="color: white; text-align: center; padding-bottom: 25px; padding-top: 25px;"> Cadastrar venda 🛒</h1>
     </div>
-    <form action="{{ route ('venda.store') }}" method="POST" style="background-color: #e9f2f9; border: 3px solid #ff5757; border-radius: 25px; padding: 25px;">
+    <form action="{{ route ('venda.store') }}" method="POST" style="background-color: #e9f2f9; border: 3px solid #ff5757; border-radius: 25px; padding: 25px;" class="needs-validation">
         @csrf
         @if ($errors->any())
         <div class="alert alert-danger" role="alert">
@@ -30,10 +36,10 @@
         <div class="row g-3">
             <div class="col">
                 <div class="mb-3">
-                    <label for="Funcionario" class="form-label">Vendedor</label>
-                    <select class="form-select" name="funcionario" class="form-control" id="funcionario" required>
-                        @foreach ($funcionarios as $funcionario)
-                        <option value="{{$funcionario->id}}">{{$funcionario->nome}}</option>
+                    <label for="Vendedor" class="form-label">Vendedor</label>
+                    <select class="form-select" name="Vendedor" class="form-control" id="Vendedor" required>
+                        @foreach ($Vendedores as $Vendedor)
+                        <option value="{{$Vendedor->id}}">{{$Vendedor->nome}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -77,28 +83,13 @@
         </div>
         <div class="row g-3">
             <label class="form-label">‎</label>
-            <button type="submit" class="submitForm botoes btn btn-primary form-control">Enviar</button>
+            <button type="submit" class="submitForm botoes btn btn-primary form-control">Realizar venda</button>
         </div>
         </div>
             <!-- <button type="submit" class="btn btn-primary form-control" id="botaonav">Enviar</button> -->
         </div>
     </form>
 
-    </div>
-</div>
-
-<!-- Toast -->
-<div class="toast-container position-fixed top-0 end-0 p-3">
-    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay='2500'>
-      <div class="toast-header">
-        <i class="bi bi-exclamation-octagon rounded me-"></i>
-        <strong class="me-auto">&nbsp;&nbsp; ALERTA &nbsp;&nbsp;</strong>
-        <small>NOW</small>
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-      </div>
-      <div class="toast-body">
-        Esse produto já está no carrinho!
-      </div>
     </div>
 </div>
 
@@ -229,16 +220,40 @@
                     }
                 })
 
-                // $("#lista2 tr td").each(function(){
-                //     var estoque = $(this).find('.textotabela').data('qtd');
-                //     var retirada = $(this).find('.inputcarrinho').val();
+                if($("#cliente option:selected").val() == undefined){
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Você precisa selecionar o cliente!',
+                    });
 
-                //     console.log(estoque + '/' + retirada)
+                    cont ++;
+                }
 
-                //     if(estoque < retirada){
-                //         console.log('tudo certo')
-                //     }
-                // })
+                if($("#Vendedor option:selected").val() == undefined){
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Você precisa selecionar o vendedor!',
+                    });
+
+                    cont ++;
+                }
+
+                $('#lista2 > tr').each(function () {
+                    let tr = $(this)
+                    let qtdOriginal = tr.find('td > label[data-qtd]').data('qtd');
+                    let qtdInformada = tr.find('td > input[name="quantidade[]"]').val();
+                    
+                    if (qtdInformada <= 0 || (qtdInformada > qtdOriginal)) {
+                        Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Verifique o estoque disponível dos itens a serem vendidos!',
+                        });
+                        cont ++;
+                    }
+                });
 
                 if( cont === 0 ){
                     form.submit();
@@ -259,19 +274,38 @@
             var verf = 0;
             $("#lista2 tr td").each(function(){
                 if($(this).text() == nome){
-                    const toastLiveExample = $('#liveToast');
-                    const toast = new bootstrap.Toast(toastLiveExample)
-                    toast.show()
-                    // Swal.fire({
-                    // icon: 'error',
-                    // title: 'Oops...',
-                    // text: 'Esse produto já está no carrinho!',
-                    // });
+                    Toastify({
+                    text: "Esse produto já está no carrinho!",
+                    duration: 3000,
+                    close: true,
+                    gravity: "top",
+                    position: "right",
+                    stopOnFocus: true,
+                    style: {
+                        margintop: '250px',
+                        background: 'rgb(255,213,93)',
+                        color: 'black',
+                    }
+                    }).showToast();
                     verf++;
                 };
             });
 
             if(verf == 0){
+                Toastify({
+                text: "Produto adicionado ao carrinho com sucesso!",
+                duration: 3000,
+                close: true,
+                gravity: "top",
+                position: "right",
+                stopOnFocus: true,
+                style: {
+                    margintop: '250px',
+                    background: 'rgb(63,156,53)',
+                }
+                }).showToast();
+
+
                 var a = $("#lista2");
                 var countcarrinho = 'carrinho' + count;
                 
@@ -282,26 +316,33 @@
 
                 $('<label>', {
                     text: nome,
-                    class: 'textotabela',
-                    "data-qtd": qtd,
+                    class: 'textotabela textolinha',
+                    "data-qtd": qtd
                 }).appendTo($('<td>',{align: 'center'}).appendTo("#" + countcarrinho));
+                
+                $('<label>', {
+                    text: 'R$ ' + valor + ' (u)',
+                    class: 'textolinha'
+                }).appendTo($('<td>', {style: 'width: 180px', align: 'center'}).appendTo("#" + countcarrinho));
 
                 $('<label>', {
-                    text: 'R$ ' + valor + ' (u)'
-                }).appendTo($('<td>', {style: 'width: 180px', align: 'center'}).appendTo("#" + countcarrinho));
+                    text: 'Estoque disponível: ' + qtd,
+                    class: 'textolinha'
+                }).appendTo($('<td>',{align: 'center', style:'width: 250px'}).appendTo("#" + countcarrinho));
+
 
                 // Cria o input
                 $('<input>', {
                     name: 'quantidade[]',
                     type: 'number',
-                    class: 'inputcarrinho',
+                    class: 'inputcarrinho form-control',
                     change: changeValorTotal,
                     "data-valor": valor,
                     id: 'inputqtd',
                     style: 'width: 100px; text-align: center;'
                 }).appendTo($('<td>', {style: 'width: 100px', align: 'center'}).appendTo("#" + countcarrinho));
 
-                    $("#inputqtd").mask("0000");
+                $("#inputqtd").mask("0000");
 
                 //colocar o nome do produto no array  
                 $('<input type="hidden" value="'+nome+'" name="produto[]">').appendTo($('<td>', {style: 'display:none'}).appendTo("#" + countcarrinho));
@@ -312,6 +353,18 @@
                 }).appendTo($('<td>', {class: 'botaoremover', click: function() {
                     $('#' + countcarrinho).remove();
                     changeValorTotal();
+                    // Toastify({
+                    // text: "Produto retirado do carrinho com sucesso!",
+                    // duration: 3000,
+                    // close: true,
+                    // gravity: "top",
+                    // position: "center",
+                    // stopOnFocus: true,
+                    // style: {
+                    //     margintop: '250px',
+                    //     background: 'rgb(63,156,53)',
+                    // }
+                    // }).showToast();
                 }}).appendTo("#" + countcarrinho));
 
                 //contador increment

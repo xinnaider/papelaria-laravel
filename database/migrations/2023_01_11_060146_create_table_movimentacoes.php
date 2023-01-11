@@ -13,20 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('vendas', function (Blueprint $table) {
+
+        Schema::create('movimentacoes', function (Blueprint $table) {
             $table->id();
-            $table->string('metodoPagamento');
-            $table->string('valorTotal');
-            $table->timestamp('dataHora');
-            $table->integer('Vendedor_id')->unsigned();
-            $table->foreign('Vendedor_id')->references('id')->on('Vendedores');
-            $table->integer('cliente_id')->unsigned();
-            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->integer('quantidade');
+            $table->string('tipo');
+            $table->integer('produto_id')->unsigned();
+            $table->foreign('produto_id')->references('id')->on('produtos');
+            $table->integer('venda_id')->unsigned()->nullable()->default(NULL);
+            $table->foreign('venda_id')->references('id')->on('vendas');
             $table->timestamp('updated_at');
             $table->timestamp('created_at');
         });
     }
- 
     /**
      * Reverse the migrations.
      *
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vendas');
+        Schema::dropIfExists('movimentacoes');
     }
 };

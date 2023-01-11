@@ -26,7 +26,7 @@
                 </div>
                 <div class="row g-0" style="height: 200px;">
                     <button id="botoesinicial" style="background-color:#008584; width: 100%; height: 100%;" onclick="window.location='{{ route('cliente.index') }}'"> CLIENTES </button>
-                    <button id="botoesinicial" style="background-color:#ffc55f; width: 100%; height: 100%; border-bottom-left-radius: 50px; border-bottom-right-radius: 50px;" onclick="window.location='{{ route('funcionario.index') }}'"> FUNCIONARIOS </button>
+                    <button id="botoesinicial" style="background-color:#ffc55f; width: 100%; height: 100%; border-bottom-left-radius: 50px; border-bottom-right-radius: 50px;" onclick="window.location='{{ route('vendedor.index') }}'"> Vendedores </button>
                     </div>
                 </div>
                 </div>

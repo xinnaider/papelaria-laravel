@@ -6,11 +6,11 @@
             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
                 <ol class="breadcrumb" style="font-size: 20px;">
                     <li class="breadcrumb-item"><a href="{{route('inicial.index')}}" style="color: red !important;">Inicio</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Clientes</li>
+                    <li class="breadcrumb-item active" aria-current="page">Movimentações</li>
                 </ol>
             </nav>
             <div style="margin-bottom: 25px; border-radius: 25px; background-color: #ff5757; height: 100px"> 
-                <h1 style="color: white; text-align: center; padding-bottom: 25px; padding-top: 25px;"> Clientes 🧑‍💼</h1>
+                <h1 style="color: white; text-align: center; padding-bottom: 25px; padding-top: 25px;"> Movimentações 📈 </h1>
             </div>
             <div class="row g-3" style="margin-bottom: 25px;">
                 <div class="col">
@@ -20,39 +20,27 @@
                     </div>
                 </div>
                 <div class="col d-flex justify-content-end">
-                    <a class="botoes btn btn-primary" href="{{ route('cliente.create') }}" style="width: 300px;" role="button">Cadastrar cliente</a>
+                    <a class="botoes btn btn-primary" href="{{ route('movimentacao.create') }}" style="width: 300px;" role="button">Gerar movimentação</a>
                 </div>
             </div>
             <table id="tabelacliente">
                 <thead>
-                    <th>Nome</th>
-                    <th>Telefone</th>
-                    <th>Email</th>
-                    <th>CPF</th>
-                    <th>Sexo</th>
-                    <th>Data de Nascimento</th>
-                    <th>Funções</th>
+                    <th>Produto</th>
+                    <th>Tipo</th>
+                    <th>Quantidade</th>
+                    <th>Número da venda</th>
                 </thead>
                 <tbody>
-                    @foreach ($clientes as $cliente)
+                    @foreach ($movimentacoes as $movimentacao)
                         <tr>
-                            <td align="center"> {{ $cliente->nome }} </td>
-                            <td align="center"> {{ $cliente->telefone }} </td>
-                            <td align="center"> {{ $cliente->email }} </td>
-                            <td align="center"> {{ $cliente->cpf }} </td>
-                            <td align="center"> {{ $cliente->sexo }} </td>
-                            <td align="center"> {{  date("d/m/Y", strtotime($cliente->dataNascimento)) }} </td>
-                            <td> 
-                                <div style="display: flex; justify-content: space-evenly;">
-                                <a class="botoes btn btn-primary" style="border-radius: 25px !important;" href="{{ route('cliente.edit', $cliente->id) }}" role="button"> <i class="bi bi-pencil-square"></i>  </a>
-                                <!-- <button class="submitForm btn btn-primary" id="teste"> <i class="bi bi-trash"></i> </button> -->
-                                <form action="{{route('cliente.delete', $cliente->id)}}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button class="submitForm botoes btn btn-primary" type="submit" style="border-radius: 25px !important;"> <i class="bi bi-trash"></i> </button>
-                                </form> 
-                                </div>
-                            </td>
+                            <td align="center"> {{ $movimentacao->produto->nome }} </td>
+                            <td align="center"> {{ $movimentacao->tipo }} </td>
+                            <td align="center"> {{ $movimentacao->quantidade }} </td>
+                            @if(!empty($movimentacao->venda))
+                            <td align="center" style="width: 250px;"> {{ $movimentacao->venda->id }} </td>
+                            @else
+                            <td align="center" style="width: 250px;"> ❌ </td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>

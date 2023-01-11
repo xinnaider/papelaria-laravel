@@ -1,16 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Unbounded&display=swap');
 
 .botoes {
-    background-color: #ff5757 !important; 
+    background-color: #eb4f4f !important; 
     color: white !important;
     font-size: 17px !important;
-    border: solid 3px #e74747 !important;
-    font-weight: 500 !important;
+    border: solid 5px #e74747 !important;
+    border-radius: 15px !important;
+    font-weight: 500 !important;  
+    transition: all 0.4s ease-in-out !important;
+    cursor: pointer;
+    box-shadow: 0px 4px 0px #bb3c3c; /* sombra */
 }
 
 .botoes:hover{
     background-color: #e74747 !important; 
-    transition: 0.5s;
+    box-shadow: 0px 3px 0px #bb3c3c; /* sombra ao passar o mouse */
 }
 
 table {

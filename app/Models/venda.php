@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\VendaProduto;
-use App\Models\funcionario;
+use App\Models\Vendedor;
 use App\Models\cliente;
 
 class venda extends Model
@@ -18,8 +18,12 @@ class venda extends Model
         'metodoPagamento',
         'valorTotal',
         'dataHora',
-        'funcionario_id',
+        'Vendedor_id',
         'cliente_id'
+    ];
+
+    protected $casts = [
+        'dataHora' => 'datetime'
     ];
 
     public function produtosVenda()
@@ -27,9 +31,9 @@ class venda extends Model
         return $this->hasMany(VendaProduto::class, 'venda_id', 'id');
     }
 
-    public function funcionario()
+    public function Vendedor()
     {
-        return $this->hasOne(funcionario::class, 'id', 'funcionario_id');
+        return $this->hasOne(Vendedor::class, 'id', 'Vendedor_id');
     }
 
     public function cliente()
