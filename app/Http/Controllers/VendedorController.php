@@ -35,7 +35,7 @@ class VendedorController extends Controller
      public function store(StoreUpdateVendedorClienteFormRequest $request)
     {
         Vendedor::create($request->all());
-        $request->session()->flash('msgInsert', 'Vendedor registrado com sucesso.');
+        $request->session()->flash('msgAlerta', 'Vendedor registrado com sucesso.');
         return redirect()->route('vendedor.index');
     }
 
@@ -45,7 +45,7 @@ class VendedorController extends Controller
 
     public function update(Request $request, Vendedor $Vendedor){
         $Vendedor->update($request->all());
-        $request->session()->flash('msgEdit', 'Vendedor editado com sucesso.');
+        $request->session()->flash('msgAlerta', 'Vendedor editado com sucesso.');
 
         return redirect()->route('vendedor.index');
     }
@@ -53,7 +53,7 @@ class VendedorController extends Controller
     public function delete(Request $request, Vendedor $Vendedor)
     {
         $Vendedor->update(['verificacao' => 'false']);
-        $request->session()->flash('msgDelete', 'Vendedor excluido com sucesso.');
+        $request->session()->flash('msgAlerta', 'Vendedor excluido com sucesso.');
 
         return redirect()->route('vendedor.index');
     }

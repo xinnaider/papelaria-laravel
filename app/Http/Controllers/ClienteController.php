@@ -39,7 +39,7 @@ class ClienteController extends Controller
      public function store(StoreUpdateVendedorClienteFormRequest $request)
     {
         Cliente::create($request->all());
-        $request->session()->flash('msgInsert', 'Cliente registrado com sucesso.');
+        $request->session()->flash('msgAlerta', 'Cliente registrado com sucesso.');
 
         return redirect()->route('cliente.index');
     }
@@ -50,7 +50,7 @@ class ClienteController extends Controller
 
     public function update(Request $request, Cliente $cliente){
         $cliente->update($request->all());
-        $request->session()->flash('msgEdit', 'Cliente editado com sucesso.');
+        $request->session()->flash('msgAlerta', 'Cliente editado com sucesso.');
 
         return redirect()->route('cliente.index');
     }
@@ -58,7 +58,7 @@ class ClienteController extends Controller
     public function delete(Request $request, Cliente $cliente)
     {
         $cliente->update(['verificacao' => 'false']);
-        $request->session()->flash('msgDelete', 'Cliente excluido com sucesso.');
+        $request->session()->flash('msgAlerta', 'Cliente excluido com sucesso.');
         
         return redirect()->route('cliente.index');
     }

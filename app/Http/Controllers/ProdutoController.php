@@ -41,7 +41,7 @@ class ProdutoController extends Controller
         $produto->verificacao = $request->verificacao;
         $produto->save();
         
-        $request->session()->flash('msgInsert', 'Produto registrado com sucesso.');
+        $request->session()->flash('msgAlerta', 'Produto registrado com sucesso.');
 
         return redirect()->route('produto.index');
     }
@@ -52,7 +52,7 @@ class ProdutoController extends Controller
 
     public function update(Request $request, Produto $produto){
         $produto->update($request->all());
-        $request->session()->flash('msgEdit', 'Produto editado com sucesso.');
+        $request->session()->flash('msgAlerta', 'Produto editado com sucesso.');
 
         return redirect()->route('produto.index');
     }
@@ -60,7 +60,7 @@ class ProdutoController extends Controller
     public function delete(Request $request, Produto $produto)
     {
         $produto->update(['verificacao' => 'false']);
-        $request->session()->flash('msgDelete', 'Produto excluido com sucesso');
+        $request->session()->flash('msgAlerta', 'Produto excluido com sucesso');
 
         return redirect()->route('produto.index');
     }

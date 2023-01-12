@@ -12,6 +12,15 @@
             <div style="margin-bottom: 25px; border-radius: 25px; background-color: #ff5757; height: 100px"> 
                 <h1 style="color: white; text-align: center; padding-bottom: 25px; padding-top: 25px;"> Produtos 📦</h1>
             </div>
+            @if (session('msgAlerta'))
+                <div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle" style="margin-right: 10px;"></i>
+                    <div>
+                    {{session('msgAlerta')}}
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div class="row g-3" style="margin-bottom: 25px;">
                 <div class="col">
                     <div class="input-group flex-nowrap" style="width: 300px;">

@@ -100,7 +100,7 @@ class VendaController extends Controller
             DB::table('produtos')->where('id', $produtoSelecionado[0]->id)->decrement('estoque',$request->quantidade[$i]);
         };
 
-        $request->session()->flash('msgInsert', 'Venda inserida com sucesso');
+        $request->session()->flash('msgAlerta', 'Venda realizada com sucesso');
 
         return redirect()->route('venda.index');
     }

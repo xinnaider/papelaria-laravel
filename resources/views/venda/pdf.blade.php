@@ -62,7 +62,7 @@
     <table class="printer-ticket">
         <thead>
             <tr>
-                <th class="title" colspan="3">Papeleria Cia.</th>
+                <th class="title" colspan="3">Papelaria Cia.</th>
             </tr>
             <tr>
                 <th colspan="3">{{ $venda->dataHora->format('d-m-Y - H:i:s') }}</th>

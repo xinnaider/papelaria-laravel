@@ -1,6 +1,7 @@
 @extends('layout')
 
 @section('content')
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <div class="container d-flex justify-content-center">
         <div class="container mt-3" style="margin-bottom: 50px">
             <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
@@ -12,6 +13,15 @@
             <div style="margin-bottom: 25px; border-radius: 25px; background-color: #ff5757; height: 100px"> 
                 <h1 style="color: white; text-align: center; padding-bottom: 25px; padding-top: 25px;"> Clientes 🧑‍💼</h1>
             </div>
+            @if (session('msgAlerta'))
+                <div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle" style="margin-right: 10px;"></i>
+                    <div>
+                    {{session('msgAlerta')}}
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div class="row g-3" style="margin-bottom: 25px;">
                 <div class="col">
                     <div class="input-group flex-nowrap" style="width: 300px;">
@@ -19,7 +29,7 @@
                         <input type="text" id="filtro" class="form-control" placeholder="Pesquisar" aria-label="Username" aria-describedby="addon-wrapping">
                     </div>
                 </div>
-                <div class="col d-flex justify-content-end">
+                <div class="col d-flex justify-content-end" >
                     <a class="botoes btn btn-primary" href="{{ route('cliente.create') }}" style="width: 300px;" role="button">Cadastrar cliente</a>
                 </div>
             </div>

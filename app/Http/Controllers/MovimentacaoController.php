@@ -42,7 +42,7 @@ class MovimentacaoController extends Controller
             ]);
         }
 
-        $request->session()->flash('msgInsert', 'Movimentação gerada com sucesso');
+        $request->session()->flash('msgAlerta', 'Movimentação gerada com sucesso');
 
         return redirect()->route('movimentacao.index');
     }
