@@ -33,6 +33,7 @@
                     <th> Valor total vendido </th>
                     <th> Data e Hora </th>
                     <th> Produtos vendidos </th>
+                    <th> Imprimir nota </th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,7 +45,8 @@
                         <td align="center">{{ $venda->metodoPagamento }}</td>
                         <td align="center">R$ {{ $venda->valorTotal }}</td>
                         <td align="center">{{ $venda->dataHora->format('d-m-Y / H:i:s') }}</td>
-                        <td align="center" style="width: 200px;"><button type="button" style="border-radius: 25px !important;" class="botoes btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{$venda->id}}"> <i class="bi bi-box2-fill"></i> </button></td>
+                        <td align="center" style="width: 170px;"> <button type="button" style="border-radius: 25px !important;" class="botoes btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal{{$venda->id}}"> <i class="bi bi-box2-fill"></i> </button> </td>
+                        <td align="center" style="width: 170px;"> <a href="{{route('venda.pdf', $venda->id)}}" type="button" style="border-radius: 25px !important;" class="botoes btn btn-primary"> <i class="bi bi-download"></i> </a> </td>
                     </tr>
                 @endforeach
                 </tbody>

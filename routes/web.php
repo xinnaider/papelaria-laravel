@@ -39,10 +39,11 @@ Route::get('/produtos/{produto}', [$produto, 'show'])->name('produto.show');
 
 $venda = VendaController::class;
 
+Route::get('/vendas/{venda}/pdf', [$venda, 'pdf'])->name('venda.pdf');
 Route::get('/vendas/create', [$venda, 'create'])->name('venda.create');
 Route::post('/vendas/create', [$venda, 'store'])->name('venda.store');
 Route::get('/vendas', [$venda, 'index'])->name('venda.index');
-
+;
 $movimentacao = MovimentacaoController::class;
 
 Route::get('/movimentacoes/create', [$movimentacao, 'create'])->name('movimentacao.create');

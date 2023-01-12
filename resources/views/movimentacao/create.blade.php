@@ -35,22 +35,30 @@
             </div>
             <div class="col">
                 <div class="mb-3">
-                    <label class="form-label">Tipo de movimentação</label>
-                    <select class="form-select" name="tipo" class="form-control" id="tipo" required>
-                        <option value="1"> Entrada </option>
-                        <option value="2"> Saida </option>
-                    </select>
+                    <div class="mb-3">
+                        <label for="estoquedisponivel" class="form-label"> Estoque atual </label>
+                        <input type="number" class="form-control" id="estoquedisponivel" disabled>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="row g-3">
-            <div class="mb-3">
-                <label for="qtd" class="form-label"> Quantidade </label>
-                <input name="qtd" placeholder="Ex: 0" onkeypress="$(this).mask('00000')" type="number" class="form-control" id="qtd" required>
+            <div class="col">
+                <label class="form-label">Tipo de movimentação</label>
+                <select class="form-select" name="tipo" class="form-control" id="tipo" required>
+                    <option value="1"> Entrada </option>
+                    <option value="2"> Saida </option>
+                </select>
+            </div>
+            <div class="col">
+                <div class="mb-3">
+                    <label for="qtd" class="form-label"> Quantidade </label>
+                    <input name="qtd" placeholder="Ex: 0" onkeypress="$(this).mask('00000')" type="number" class="form-control" id="qtd" required>
+                </div>
             </div>
         </div>
         <div class="modal-footer">
-            <a class="botoes btn btn-primary" style="margin-right: 25px;" href="{{}}"> Voltar </a>
+            <a class="botoes btn btn-primary" style="margin-right: 25px;" href="{{ route('movimentacao.index') }}"> Voltar </a>
             <button type="submit" class="submit botoes btn btn-primary">Gerar</button>
         </div>
     </form>
@@ -61,18 +69,14 @@
 
 @push('scripts')
 <script>
-    $("#tipo").change(function() {
-        if($("#tipo option:selected").val() == 2){
-            var valor = $("#produto option:selected").data('qtd');
-            $("#qtd").attr({
-            "min":"-1",
-            "max":valor
-            });
-        }
-        if($("#tipo option:selected").val() == 1){
-            $( "#qtd" ).prop( "min", false );
-            $( "#qtd" ).prop( "max", false );
-        }
+    $(document).ready(function() {
+        var disponivel = $("#produto option:selected").data('qtd');
+        $("#estoquedisponivel").val(disponivel).change();
+    });
+
+    $("#produto").on('change', function(){
+        var disponivel = $("#produto option:selected").data('qtd');
+        $("#estoquedisponivel").val(disponivel).change();
     });
 
     $(".submit").click(function(e){
@@ -80,6 +84,18 @@
 
         var verificador = true;
         var quantidade = $("#qtd").val();
+
+        if($("#tipo option:selected").val() == 2){
+            var valor = $("#produto option:selected").data('qtd');
+            if(valor < quantidade){
+                Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Verifique o estoque disponível para o produto!',
+                });
+            verificador = false;
+            }
+        }
 
         if(quantidade === "0" || !quantidade){
             Swal.fire({

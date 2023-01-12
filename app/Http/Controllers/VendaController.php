@@ -10,6 +10,7 @@ use App\Models\VendaProduto;
 use App\Models\Venda;
 use App\Models\Movimentacao;
 use DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class VendaController extends Controller
 {
@@ -31,6 +32,26 @@ class VendaController extends Controller
         $vendas = Venda::all();
 
         return view('venda.index', compact('vendas'));
+    }
+
+    public function pdf(Venda $venda)
+    {
+        function str_random($n) {
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $randomString = '';
+         
+            for ($i = 0; $i < $n; $i++) {
+                $index = rand(0, strlen($characters) - 1);
+                $randomString .= $characters[$index];
+            }
+         
+            return $randomString;
+        }
+
+        $pdf = Pdf::loadView('venda.pdf', compact('venda'));
+        $customPaper = array(0,0,361.90,350.00);
+        return $pdf->setPaper($customPaper, 'landscape')->download("N".$venda->id.date(" d-m-y h:i:s ").str_random(3).'.pdf');
+
     }
 
     public function create()
