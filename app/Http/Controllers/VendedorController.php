@@ -35,6 +35,7 @@ class VendedorController extends Controller
      public function store(StoreUpdateVendedorClienteFormRequest $request)
     {
         Vendedor::create($request->all());
+        
         $request->session()->flash('msgAlerta', 'Vendedor registrado com sucesso.');
         return redirect()->route('vendedor.index');
     }

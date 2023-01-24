@@ -27,15 +27,6 @@ class ClienteController extends Controller
         return view('cliente.create');
     }
 
-    public function show(Cliente $cliente)
-    {
-        // $clientes = $this->validarCliente($id);
-        // tem uma maneira mais Laravel de encontrar o cliente: foi o thaalyys q fez isso 
-        // vou te ensinar uma mais top kk blz
-
-        return view('cliente.show', compact('cliente'));
-    }
-
      public function store(StoreUpdateVendedorClienteFormRequest $request)
     {
         Cliente::create($request->all());

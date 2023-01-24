@@ -15,7 +15,6 @@ Route::get('/clientess/{cliente}/edit', [$cliente, 'edit'])->name('cliente.edit'
 Route::get('/clientes', [$cliente, 'index'])->name('cliente.index');
 Route::post('/clientes/create', [$cliente, 'store'])->name('cliente.store');
 Route::get('/clientes/create', [$cliente, 'create'])->name('cliente.create');
-Route::get('/clientes/{id}', [$cliente, 'show'])->name('cliente.show');
 
 $vendedor = VendedorController::class;
 
@@ -25,7 +24,6 @@ Route::get('/vendedores/{vendedor}/edit', [$vendedor, 'edit'])->name('vendedor.e
 Route::get('/vendedores', [$vendedor, 'index'])->name('vendedor.index');
 Route::post('/vendedores/create', [$vendedor, 'store'])->name('vendedor.store');
 Route::get('/vendedores/create', [$vendedor, 'create'])->name('vendedor.create');
-Route::get('/vendedores/{vendedor}', [$vendedor, 'show'])->name('vendedor.show');
 
 $produto = ProdutoController::class;
 
@@ -35,7 +33,6 @@ Route::get('/produtos/{produto}/edit', [$produto, 'edit'])->name('produto.edit')
 Route::get('/produtos', [$produto, 'index'])->name('produto.index');
 Route::post('/produtos/create', [$produto, 'store'])->name('produto.store');
 Route::get('/produtos/create', [$produto, 'create'])->name('produto.create');
-Route::get('/produtos/{produto}', [$produto, 'show'])->name('produto.show');
 
 $venda = VendaController::class;
 

@@ -1,7 +1,6 @@
 @extends('layout')
 
 @section('content')
-{{-- {{ $errors ?? 'Não tem erro' }} --}}
 <div class="container d-flex justify-content-center">
     <div class="container mt-3" style="margin-bottom: 50px;">
         <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
@@ -86,7 +85,6 @@
             <button type="submit" class="submitForm botoes btn btn-primary form-control">Realizar venda</button>
         </div>
         </div>
-            <!-- <button type="submit" class="btn btn-primary form-control" id="botaonav">Enviar</button> -->
         </div>
     </form>
 
@@ -103,10 +101,6 @@
         </div>
         <div class="modal-body">
             <ul class="list-group" id="lista1">
-                {{-- @foreach ($produtos as $produto)
-                    <li class="list-group-item conteudolista estilizacaolista" onclick="addItem(this)">{{$produto->nome}} <i class="bi bi-plus-circle"></i> </li>
-                @endforeach --}}
-
                 <div class="input-group flex-nowrap" style="margin-bottom: 25px; width: 300px;">
                     <span class="input-group-text" id="addon-wrapping"><i class="bi bi-search"></i></span>
                     <input type="text" id="filtro" class="form-control" placeholder="Pesquisar" aria-label="Username" aria-describedby="addon-wrapping">
@@ -136,49 +130,6 @@
 
 @push('scripts')
     <script>
-        // function addItem(variavel) {
-        //     // var a = $("#lista2");
-        //     var a = document.getElementById("lista2");
-        //     var candidate = variavel.textContent;
-        //     var li = document.createElement("li");
-
-        //     if (document.body.contains(document.getElementById(candidate))) {
-        //         Swal.fire({
-        //         icon: 'error',
-        //         title: 'Oops...',
-        //         text: 'Esse produto já está no carrinho!',
-        //         });
-        //     } else {
-        //         // $('<li>'); // cria o elemento em jquery
-
-        //         // $('<li>', {
-        //         //     id: caditate,
-        //         //     class: '',
-        //         //     style: '',
-        //         // }); // cria o elemento configurando alguns atributos
-        //         // $('<li>').append('input'); // inseri um elemento
-
-        //         li.setAttribute('id', candidate);
-        //         li.appendChild(document.createTextNode(candidate));
-        //         li.classList.add("list-group-item");
-        //         var r= $('<input type="text" name="quantidade[]" style="width: 50px; height: 24px; margin-left: 10px;" class="inputcarrinho"> <i class="bi bi-trash-fill" style="background-color: #ff5757; border-radius: 5px; padding: 5px; margin-left: 10px; cursor: pointer;" onclick="removeItem(this.id)" id="' + candidate + '"></i> <input style="visibility: hidden; width: 1px; height: 1px;" type="text" value="' + candidate + '" name="produto[]">');
-        //         a.appendChild(li);
-        //         $('#'+candidate).append(r);
-        //     }
-
-        // }
- 
-        // // Creating a function to remove item from list
-        // function removeItem(variavel) {
-        //     // Declaring a variable to get select element
-        //     $('#'+variavel).remove();
-        // }
-
-        // $('input[name="quantidade[]"]').on('change', function () {
-        //     console.log(this);
-        //     console.log($(this).val());
-        // });
-
         function changeValorTotal() {
             let resultado = 0;
 
@@ -187,10 +138,6 @@
             });
 
             $("#valorTotal").val(resultado);
-            // let input = $(this);
-
-            // console.log(input.data('valor') * input.val());
-            // $("#valorTotal").val(parseFloat(parseFloat($('#valorTotal').val()) + parseFloat(input.data('valor') * input.val())));
         }
 
         $('#filtro').on('keyup', function () {
@@ -353,18 +300,6 @@
                 }).appendTo($('<td>', {class: 'botaoremover', click: function() {
                     $('#' + countcarrinho).remove();
                     changeValorTotal();
-                    // Toastify({
-                    // text: "Produto retirado do carrinho com sucesso!",
-                    // duration: 3000,
-                    // close: true,
-                    // gravity: "top",
-                    // position: "center",
-                    // stopOnFocus: true,
-                    // style: {
-                    //     margintop: '250px',
-                    //     background: 'rgb(63,156,53)',
-                    // }
-                    // }).showToast();
                 }}).appendTo("#" + countcarrinho));
 
                 //contador increment

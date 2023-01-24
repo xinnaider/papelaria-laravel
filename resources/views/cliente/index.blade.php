@@ -55,7 +55,6 @@
                             <td> 
                                 <div style="display: flex; justify-content: space-evenly;">
                                 <a class="botoes btn btn-primary" style="border-radius: 25px !important;" href="{{ route('cliente.edit', $cliente->id) }}" role="button"> <i class="bi bi-pencil-square"></i>  </a>
-                                <!-- <button class="submitForm btn btn-primary" id="teste"> <i class="bi bi-trash"></i> </button> -->
                                 <form action="{{route('cliente.delete', $cliente->id)}}" method="POST">
                                     @method('DELETE')
                                     @csrf
@@ -78,7 +77,7 @@
         $('#tabelacliente tbody tr').filter(function(){
             $(this).toggle($(this).text().toLowerCase().indexOf(search) > -1);
         });
-    })
+    });
 
     $('.submitForm').on('click',function(e){
             console.log('teste');

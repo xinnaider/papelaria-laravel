@@ -24,7 +24,6 @@ class MovimentacaoController extends Controller
     public function store(Request $request)
     {
         if($request->tipo === "1"){
-
             Produto::where('id', $request->produto)->increment('estoque',$request->qtd);
   
             Movimentacao::create([
