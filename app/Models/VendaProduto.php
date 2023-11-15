@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\produto;
+use App\Models\Produto;
 
 class VendaProduto extends Model
 {
@@ -19,6 +19,6 @@ class VendaProduto extends Model
     ];
 
     public function produto(){
-        return $this->hasOne(produto::class, 'id',  'produto_id');
+        return $this->hasOne(Produto::class, 'id',  'produto_id');
     }
 }

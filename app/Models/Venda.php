@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\VendaProduto;
 use App\Models\Vendedor;
-use App\Models\cliente;
+use App\Models\Cliente;
 
-class venda extends Model
+class Venda extends Model
 {
     use HasFactory;
 
@@ -38,6 +38,6 @@ class venda extends Model
 
     public function cliente()
     {
-        return $this->hasOne(cliente::class, 'id', 'cliente_id');
+        return $this->hasOne(Cliente::class, 'id', 'cliente_id');
     }
 }
